@@ -46,6 +46,31 @@ public class InteractionBDD {
 
     }
 
+    public Produit getObjecType(int id){
+        Produit produit = new Produit();
+        ResultSet rs;
+        String procedureStockee = "{call get_object_type (?)}";
+
+        try (CallableStatement cStmt = this.connexion.prepareCall(procedureStockee)) {
+
+            cStmt.setInt(1, id);
+
+            cStmt.execute();
+            rs = cStmt.getResultSet();
+
+            while (rs.next()) {
+                produit.setDescription(rs.getString(1));
+                produit.setType(rs.getString(2));
+            }
+            rs.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return produit;
+    }
+
 
     public List<Produit> getProduits() {
 
@@ -55,32 +80,38 @@ public class InteractionBDD {
         List<Produit> listeProduits = new ArrayList<>();
 
         int idActuel = 0;
-        String caracteristique;
         Produit produitActuel = new Produit();
+        int i = -1;
 
         for (LigneProduit ligne : lignesProduits) {
 
-            if(idActuel != ligne.getIdObjet() && idActuel != 0){
-                listeProduits.add(produitActuel);
+            if(idActuel != ligne.getIdObjet()){
+                //System.out.println("Creation nouvel objet");
                 produitActuel = new Produit();
+                produitActuel.setId(ligne.getIdObjet());
+                listeProduits.add(produitActuel);
+                produitActuel = getObjecType(ligne.getIdObjet());
+                i++;
+                idActuel= ligne.getIdObjet();
+                listeProduits.get(i).setDescription(produitActuel.getDescription());
+                listeProduits.get(i).setType(produitActuel.getType());
             }
 
-        caracteristique = ligne.getLibelleCaracteristique();
-        caracteristique += " : ";
+            listeProduits.get(i).addCaracteristiques(ligne.getLibelleCaracteristique());
+        //produitActuel.addCaracteristiques(ligne.getLibelleCaracteristique());
+            //System.out.println(ligne.getLibelleCaracteristique());
         if(ligne.getLibelleReferenciel()!=null){
-            caracteristique += ligne.getLibelleReferenciel();
+            listeProduits.get(i).addCaracteristiques(ligne.getLibelleReferenciel());
         }
         else if(ligne.getTexte()!=null){
-            caracteristique += ligne.getTexte();
+            listeProduits.get(i).addCaracteristiques(ligne.getTexte());
         }
         else if(ligne.getValeur()!=0){
-            caracteristique += ligne.getValeur();
+            listeProduits.get(i).addCaracteristiques(ligne.getValeur());
         }
         else{
-            caracteristique += "-";
+            listeProduits.get(i).addCaracteristiques("null");
         }
-        caracteristique +=", ";
-        produitActuel.addCaracteristiques(caracteristique);
 
         }
 

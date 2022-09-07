@@ -6,22 +6,40 @@ import java.util.List;
 
 public class Produit {
 
-    private String nom;
-    private List caracteristiques = new ArrayList();
+    private String type;
+    private int id;
+    private String description;
+    private List<Object> caracteristiques = new ArrayList();
 
-    public String getNom() {
-        return nom;
+    public String getType() {
+        return type;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public List getCaracteristiques() {
+    public List<Object> getCaracteristiques() {
         return caracteristiques;
     }
 
     public void addCaracteristiques(Object obj) {
         this.caracteristiques.add(obj);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
