@@ -30,7 +30,7 @@ public class InteractionBDD {
                 LigneProduit newLigne = new LigneProduit();
                 newLigne.setIdObjet(rs.getInt(1));
                 newLigne.setLibelleCaracteristique(rs.getString(2));
-                newLigne.setValeur(rs.getInt(3));
+                newLigne.setValeur(rs.getDouble(3));
                 newLigne.setTexte(rs.getString(4));
                 newLigne.setLibelleReferenciel(rs.getString(5));
 
@@ -114,6 +114,8 @@ public class InteractionBDD {
         }
 
         }
+
+
 
         return listeProduits;
 

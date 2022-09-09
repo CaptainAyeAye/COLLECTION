@@ -4,7 +4,7 @@ public class LigneProduit {
 
     private int idObjet;
     private String libelleCaracteristique;
-    private int valeur;
+    private double valeur;
     private String texte;
     private String libelleReferenciel;
 
@@ -24,11 +24,11 @@ public class LigneProduit {
         this.libelleCaracteristique = libelleCaracteristique;
     }
 
-    public int getValeur() {
+    public double getValeur() {
         return valeur;
     }
 
-    public void setValeur(int valeur) {
+    public void setValeur(double valeur) {
         this.valeur = valeur;
     }
 
