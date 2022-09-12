@@ -21,14 +21,14 @@
                <children>
                     <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="478.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="14.0">
                         <children>
-                            <Label layoutX="12.0" layoutY="34.0" text="Libellé : " />
-                            <TextField fx:id="libelleSearch" layoutX="57.0" layoutY="30.0" prefHeight="26.0" prefWidth="198.0" />
+                            <Label layoutX="12.0" layoutY="34.0" text="Libellé : " textFill="#0000007e" />
+                            <TextField fx:id="libelleSearch" layoutX="57.0" layoutY="30.0" opacity="0.48" prefHeight="26.0" prefWidth="198.0" />
                             <Label layoutX="14.0" layoutY="5.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="92.0" text="Recherche :" textOverrun="CLIP" underline="true">
                                 <font>
                                     <Font name="System Bold" size="14.0" />
                                 </font>
                             </Label>
-                        <ComboBox fx:id="continentSearch" layoutX="289.0" layoutY="30.0" prefHeight="26.0" prefWidth="164.0" promptText="Type" />
+                        <ComboBox fx:id="continentSearch" layoutX="289.0" layoutY="30.0" opacity="0.45" prefHeight="26.0" prefWidth="164.0" promptText="Type" />
                         </children>
                     </AnchorPane>
                     <AnchorPane layoutX="4.0" layoutY="161.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="506.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
@@ -45,7 +45,7 @@
                             </TableView>
                      </children>
                     </AnchorPane>
-                    <Button layoutX="31.0" layoutY="607.0" mnemonicParsing="false" text="Ajouter" />
+                    <Button layoutX="31.0" layoutY="607.0" mnemonicParsing="false" text="Ajouter" textFill="#00000075" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="detailsShow" minHeight="0.0" minWidth="0.0" prefHeight="647.0" prefWidth="557.0">
@@ -119,8 +119,8 @@
                             </GridPane>
                         </children>
                     </AnchorPane>
-                      <Button layoutX="131.0" layoutY="594.0" mnemonicParsing="false" text="Supprimer" />
-                      <Button layoutX="332.0" layoutY="594.0" mnemonicParsing="false" text="Modifier" />
+                      <Button layoutX="131.0" layoutY="594.0" mnemonicParsing="false" text="Supprimer" textFill="#00000073" />
+                      <Button layoutX="332.0" layoutY="594.0" mnemonicParsing="false" text="Modifier" textFill="#00000076" />
                </children>
             </AnchorPane>
         </items>

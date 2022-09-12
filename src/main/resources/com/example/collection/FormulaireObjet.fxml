@@ -43,12 +43,12 @@
             <Label text="Pays :" GridPane.rowIndex="4" />
             <Label text="Langue :" GridPane.rowIndex="5" />
             <Label text="Période :" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="modifLibelle" GridPane.columnIndex="1" />
+            <TextField fx:id="modifPrix" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="modifPays" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="modifLangue" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="modifPeriode" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="modifMatiere" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Marque :" GridPane.rowIndex="7" />
             <Label text="Forme :" GridPane.rowIndex="8" />
             <Label text="Devise :" GridPane.rowIndex="9" />
@@ -56,14 +56,14 @@
             <Label text="Theme :" GridPane.rowIndex="11" />
             <Label text="Année :" GridPane.rowIndex="12" />
             <Label text="Variété :" GridPane.rowIndex="13" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="12" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <ComboBox fx:id="modifCouleur" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="modifMarque" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ComboBox fx:id="modifForme" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ComboBox fx:id="modifDevise" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="modifDentelure" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <TextField fx:id="modifTheme" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <TextField fx:id="modifAnnee" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <ComboBox fx:id="modifVariete" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
          </children>
       </GridPane>
       <Label fx:id="titre" layoutX="309.0" layoutY="20.0" prefHeight="54.0" prefWidth="283.0">
