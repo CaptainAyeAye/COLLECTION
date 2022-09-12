@@ -1,6 +1,8 @@
 package com.example.collection;
 
 import com.example.collection.DAO.InteractionBDD;
+import com.example.collection.DAO.LigneProduitDAO;
+import com.example.collection.DAO.ProduitDAO;
 import com.example.collection.objets.LigneProduit;
 import com.example.collection.objets.Produit;
 import com.example.collection.outils.Affichage;
@@ -103,12 +105,14 @@ public class HelloController {
     @FXML
     private Label labelRepCar10;
 
+    private String annee;
+
     @FXML
     private void initialize() {
         ///affichage dans la table///
         InteractionBDD BDD = new InteractionBDD();
         List<Produit> listeProduits2 = new ArrayList<>();
-        listeProduits2 = BDD.getProduits();
+        listeProduits2 = ProduitDAO.getProduits();
         Affichage.afficherProduits(listeProduits2);
 
         articleTable.setItems(FXCollections.observableArrayList(listeProduits2));
@@ -130,25 +134,31 @@ public class HelloController {
     }
 
     private void afficherDetails(Produit produit) {
-
+/*
         System.out.println();
         for (int j = 0; j < produit.getCaracteristiques().size(); j = j + 2) {
             if (produit.getCaracteristiques().get(j).toString().equals("annee")) {
+
                 System.out.println(produit.getCaracteristiques().get(j));
                 System.out.println(produit.getCaracteristiques().get(j + 1).toString().substring(0, 4));
+                annee = produit.getCaracteristiques().get(j + 1).toString().substring(0, 4);
             } else {
                 System.out.println(produit.getCaracteristiques().get(j));
                 System.out.println(produit.getCaracteristiques().get(j + 1).toString());
             }
 
         }
+*/
 
+
+/////////////
 
         labelRepId.setText(String.valueOf(produit.getId()));
         labelRepDescription.setText(produit.getDescription());
         labelRepType.setText(produit.getType());
         labelCar1.setText(produit.getCaracteristiques().get(0).toString());
         labelRepCar1.setText(produit.getCaracteristiques().get(1).toString());
+       // labelRepCar1.setText(annee);
         labelCar2.setText(produit.getCaracteristiques().get(2).toString());
         labelRepCar2.setText(produit.getCaracteristiques().get(3).toString());
         labelCar3.setText(produit.getCaracteristiques().get(4).toString());
@@ -203,11 +213,11 @@ public class HelloController {
         InteractionBDD BDD = new InteractionBDD();
 
         List<LigneProduit> listeProduits = new ArrayList<>();
-        listeProduits = BDD.getLignesProduits();
+        listeProduits = LigneProduitDAO.getLignesProduits();
         Affichage.afficherLignesProduits(listeProduits);
 
         List<Produit> listeProduits2 = new ArrayList<>();
-        listeProduits2 = BDD.getProduits();
+        listeProduits2 = ProduitDAO.getProduits();
         Affichage.afficherProduits(listeProduits2);
     }
 

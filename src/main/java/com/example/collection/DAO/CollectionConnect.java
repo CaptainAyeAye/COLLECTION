@@ -3,11 +3,11 @@ package com.example.collection.DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class BDDconnect {
+public class CollectionConnect {
     // Declare the JDBC objects.
     private static Connection connexion;
 
-    private BDDconnect() {
+    private CollectionConnect() {
 
     }
 
