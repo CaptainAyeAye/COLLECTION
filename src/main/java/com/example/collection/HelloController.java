@@ -9,11 +9,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HelloController {
+
+    @FXML
+    private AnchorPane detailsShow;
     @FXML
     private Label welcomeText;
 
@@ -116,8 +120,14 @@ public class HelloController {
         ///affichage du details///
         articleTable.getSelectionModel().selectedItemProperty()
                 .addListener((observableValue, oldValue, newValue) -> afficherDetails(newValue));
+
+        detailDisable(false);
+
     }
 
+    public void detailDisable(boolean bool) {
+        detailsShow.setVisible(bool);
+    }
 
     private void afficherDetails(Produit produit) {
 
@@ -177,6 +187,7 @@ public class HelloController {
             labelCar10.setText(" ");
             labelRepCar10.setText(" ");
         }
+        detailDisable(true);
 
 
     }
