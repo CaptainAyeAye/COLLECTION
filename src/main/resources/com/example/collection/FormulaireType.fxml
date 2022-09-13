@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="598.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.collection.FormulaireType">
+   <children>
+      <Label layoutX="248.0" layoutY="43.0" text="Formulaire Type">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
+      <Button layoutX="248.0" layoutY="482.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Confirmer" textFill="#00000080" />
+      <Button layoutX="456.0" layoutY="482.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Annuler" textFill="#00000080" />
+      <GridPane layoutX="248.0" layoutY="189.0" prefHeight="31.0" prefWidth="278.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="modifLibelle" prefHeight="30.0" prefWidth="159.0" GridPane.columnIndex="1" />
+            <Label text="Libellé :" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
