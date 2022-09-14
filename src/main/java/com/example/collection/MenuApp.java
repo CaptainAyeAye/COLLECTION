@@ -1,9 +1,10 @@
 package com.example.collection;
 
+import com.example.collection.Controller.GestionObjetController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,13 +28,13 @@ public class MenuApp extends Application {
     private void showArticle() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MenuApp.class.getResource("ArticleVue.fxml"));
-            AnchorPane menuLayout = (AnchorPane) loader.load();
+            loader.setLocation(MenuApp.class.getResource("GestionObjet.fxml"));
+            GridPane menuLayout = loader.load();
 
             Scene scene = new Scene(menuLayout);
             primaryStage.setScene(scene);
 
-            HelloController controller = loader.getController();
+            GestionObjetController controller = loader.getController();
             controller.setMenuApp(this);
 
             primaryStage.show();
@@ -41,6 +42,8 @@ public class MenuApp extends Application {
             e.printStackTrace();
         }
     }
+
+
 
 
 

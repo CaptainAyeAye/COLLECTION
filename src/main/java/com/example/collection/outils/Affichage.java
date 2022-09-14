@@ -1,7 +1,7 @@
 package com.example.collection.outils;
 
-import com.example.collection.objets.LigneProduit;
-import com.example.collection.objets.Produit;
+import com.example.collection.metier.LigneProduit;
+import com.example.collection.metier.Produit;
 
 import java.util.List;
 

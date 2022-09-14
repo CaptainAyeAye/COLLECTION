@@ -1,6 +1,6 @@
-package com.example.collection;
+package com.example.collection.Controller;
 
-import com.example.collection.objets.Produit;
+import com.example.collection.metier.Produit;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 

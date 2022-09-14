@@ -6,4 +6,6 @@ module com.example.collection {
 
     opens com.example.collection to javafx.fxml;
     exports com.example.collection;
+    exports com.example.collection.Controller;
+    opens com.example.collection.Controller to javafx.fxml;
 }

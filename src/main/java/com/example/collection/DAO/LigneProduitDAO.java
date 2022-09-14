@@ -1,6 +1,6 @@
 package com.example.collection.DAO;
 
-import com.example.collection.objets.LigneProduit;
+import com.example.collection.metier.LigneProduit;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

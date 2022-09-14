@@ -1,4 +1,4 @@
-package com.example.collection.objets;
+package com.example.collection.metier;
 
 public class Type {
 

@@ -1,25 +1,26 @@
-package com.example.collection;
+package com.example.collection.Controller;
 
 import com.example.collection.DAO.InteractionBDD;
 import com.example.collection.DAO.LigneProduitDAO;
 import com.example.collection.DAO.ProduitDAO;
-import com.example.collection.objets.LigneProduit;
-import com.example.collection.objets.Produit;
+import com.example.collection.MenuApp;
+import com.example.collection.metier.LigneProduit;
+import com.example.collection.metier.Produit;
 import com.example.collection.outils.Affichage;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HelloController {
+public class GestionObjetController {
 
     @FXML
-    private AnchorPane detailsShow;
+    private GridPane detailsShow;
     @FXML
     private Label welcomeText;
 
@@ -134,31 +135,13 @@ public class HelloController {
     }
 
     private void afficherDetails(Produit produit) {
-/*
-        System.out.println();
-        for (int j = 0; j < produit.getCaracteristiques().size(); j = j + 2) {
-            if (produit.getCaracteristiques().get(j).toString().equals("annee")) {
 
-                System.out.println(produit.getCaracteristiques().get(j));
-                System.out.println(produit.getCaracteristiques().get(j + 1).toString().substring(0, 4));
-                annee = produit.getCaracteristiques().get(j + 1).toString().substring(0, 4);
-            } else {
-                System.out.println(produit.getCaracteristiques().get(j));
-                System.out.println(produit.getCaracteristiques().get(j + 1).toString());
-            }
-
-        }
-*/
-
-
-/////////////
 
         labelRepId.setText(String.valueOf(produit.getId()));
         labelRepDescription.setText(produit.getDescription());
         labelRepType.setText(produit.getType());
         labelCar1.setText(produit.getCaracteristiques().get(0).toString());
         labelRepCar1.setText(produit.getCaracteristiques().get(1).toString());
-       // labelRepCar1.setText(annee);
         labelCar2.setText(produit.getCaracteristiques().get(2).toString());
         labelRepCar2.setText(produit.getCaracteristiques().get(3).toString());
         labelCar3.setText(produit.getCaracteristiques().get(4).toString());
@@ -225,4 +208,29 @@ public class HelloController {
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
     }
+
+
+    @FXML
+    private void ajtProduitTest(){
+        Produit produit = new Produit();
+        produit.setType("Piece");
+        produit.setDescription("Ce produit a ete ajoute via java");
+        produit.addCaracteristiques("annee");
+        produit.addCaracteristiques(2000);
+        produit.addCaracteristiques("devise");
+        produit.addCaracteristiques("dollar");
+        produit.addCaracteristiques("matiere");
+        produit.addCaracteristiques("fer");
+        produit.addCaracteristiques("pays");
+        produit.addCaracteristiques("france");
+        produit.addCaracteristiques("periode");
+        produit.addCaracteristiques(null);
+        produit.addCaracteristiques("prix");
+        produit.addCaracteristiques(333);
+        produit.addCaracteristiques("theme");
+        produit.addCaracteristiques(null);
+        InteractionBDD pouet = new InteractionBDD();
+        ProduitDAO.AjouterProduit(produit);
+    }
+
 }
