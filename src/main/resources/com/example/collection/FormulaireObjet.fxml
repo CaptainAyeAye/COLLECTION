@@ -50,26 +50,26 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label text="Libellé :" />
-                  <Label text="Prix :" GridPane.rowIndex="1" />
-                  <Label text="Matiére :" GridPane.rowIndex="2" />
-                  <Label text="Couleur :" GridPane.rowIndex="3" />
-                  <Label text="Pays :" GridPane.rowIndex="4" />
-                  <Label text="Langue :" GridPane.rowIndex="5" />
-                  <Label text="Période :" GridPane.rowIndex="6" />
+                  <Label fx:id="labelCar1" text="Libellé :" />
+                  <Label fx:id="labelCar2" text="Prix :" GridPane.rowIndex="1" />
+                  <Label fx:id="labelCar3" text="Matiére :" GridPane.rowIndex="2" />
+                  <Label fx:id="labelCar4" text="Couleur :" GridPane.rowIndex="3" />
+                  <Label fx:id="labelCar5" text="Pays :" GridPane.rowIndex="4" />
+                  <Label fx:id="labelCar6" text="Langue :" GridPane.rowIndex="5" />
+                  <Label fx:id="labelCar7" text="Période :" GridPane.rowIndex="6" />
                   <TextField fx:id="modifLibelle" GridPane.columnIndex="1" />
                   <TextField fx:id="modifPrix" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <ComboBox fx:id="modifPays" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ComboBox fx:id="modifLangue" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <ComboBox fx:id="modifPeriode" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <ComboBox fx:id="modifMatiere" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Marque :" GridPane.rowIndex="7" />
-                  <Label text="Forme :" GridPane.rowIndex="8" />
-                  <Label text="Devise :" GridPane.rowIndex="9" />
-                  <Label text="Dentelure :" GridPane.rowIndex="10" />
-                  <Label text="Theme :" GridPane.rowIndex="11" />
-                  <Label text="Année :" GridPane.rowIndex="12" />
-                  <Label text="Variété :" GridPane.rowIndex="13" />
+                  <Label fx:id="labelCar8" text="Marque :" GridPane.rowIndex="7" />
+                  <Label fx:id="labelCar9" text="Forme :" GridPane.rowIndex="8" />
+                  <Label fx:id="labelCar10" text="Devise :" GridPane.rowIndex="9" />
+                  <Label fx:id="labelCar11" text="Dentelure :" GridPane.rowIndex="10" />
+                  <Label fx:id="labelCar12" text="Theme :" GridPane.rowIndex="11" />
+                  <Label fx:id="labelCar13" text="Année :" GridPane.rowIndex="12" />
+                  <Label fx:id="labelCar14" text="Variété :" GridPane.rowIndex="13" />
                   <ComboBox fx:id="modifCouleur" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <ComboBox fx:id="modifMarque" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <ComboBox fx:id="modifForme" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />

@@ -11,7 +11,7 @@ import java.util.List;
 public class Produit {
 
     private String type;
-    private int id;
+    private Integer id;
     private String description;
     private List<Object> caracteristiques = new ArrayList();
 

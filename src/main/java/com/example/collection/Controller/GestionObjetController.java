@@ -106,8 +106,8 @@ public class GestionObjetController {
     @FXML
     private Label labelRepCar10;
 
-    private String annee;
 
+    private Produit produitselected;
     @FXML
     private void initialize() {
         ///affichage dans la table///
@@ -135,6 +135,7 @@ public class GestionObjetController {
     }
 
     private void afficherDetails(Produit produit) {
+
 
 
         labelRepId.setText(String.valueOf(produit.getId()));
@@ -211,26 +212,12 @@ public class GestionObjetController {
 
 
     @FXML
-    private void ajtProduitTest(){
-        Produit produit = new Produit();
-        produit.setType("Piece");
-        produit.setDescription("Ce produit a ete ajoute via java");
-        produit.addCaracteristiques("annee");
-        produit.addCaracteristiques(2000);
-        produit.addCaracteristiques("devise");
-        produit.addCaracteristiques("dollar");
-        produit.addCaracteristiques("matiere");
-        produit.addCaracteristiques("fer");
-        produit.addCaracteristiques("pays");
-        produit.addCaracteristiques("france");
-        produit.addCaracteristiques("periode");
-        produit.addCaracteristiques(null);
-        produit.addCaracteristiques("prix");
-        produit.addCaracteristiques(333);
-        produit.addCaracteristiques("theme");
-        produit.addCaracteristiques(null);
-        InteractionBDD pouet = new InteractionBDD();
-        ProduitDAO.AjouterProduit(produit);
-    }
+    public void ajouter() {
 
-}
+            produitselected = null;
+            Produit produit = new Produit();
+            menuApp.ajouterModifierArticle(produit, "Ajouter un article");
+            //serviceArticle.insertArticle(articleSelectionner);
+        }
+
+    }

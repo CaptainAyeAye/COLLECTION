@@ -1,16 +1,20 @@
 package com.example.collection;
 
+import com.example.collection.Controller.AjouterModifierProduitController;
 import com.example.collection.Controller.GestionObjetController;
+import com.example.collection.metier.Produit;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MenuApp extends Application {
-
+    private Stage dialogStage;
     private Stage primaryStage;
     public static void main(String[] args) {
         launch(args);
@@ -43,7 +47,35 @@ public class MenuApp extends Application {
         }
     }
 
+    public void ajouterModifierArticle(Produit articleSelected, String titre) {
 
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("FormulaireObjet.fxml"));
+            AnchorPane ajouterModifierOverview = (AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle(titre);
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+
+            Scene scene = new Scene(ajouterModifierOverview);
+
+            AjouterModifierProduitController ajouterModifierController = loader.getController();
+            ajouterModifierController.setDialogStage(dialogStage);
+            //ajouterModifierController.modifierArticle(articleSelected);
+            ajouterModifierController.setTitle(titre);
+
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

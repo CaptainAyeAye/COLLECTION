@@ -79,7 +79,7 @@
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                       </columnResizePolicy>
                                   </TableView>
-                                <Button mnemonicParsing="false" onAction="#ajtProduitTest" text="Ajouter" textFill="#00000075" GridPane.rowIndex="2" />
+                                <Button mnemonicParsing="false" onAction="#ajouter" text="Ajouter" textFill="#00000075" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </children>
