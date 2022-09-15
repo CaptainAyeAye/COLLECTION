@@ -2,7 +2,9 @@ package com.example.collection;
 
 import com.example.collection.Controller.AjouterModifierProduitController;
 import com.example.collection.Controller.GestionObjetController;
+import com.example.collection.Controller.GestionTypeController;
 import com.example.collection.metier.Produit;
+import com.example.collection.metier.Type;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -77,7 +79,51 @@ public class MenuApp extends Application {
         }
     }
 
+    private void showType() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionType.fxml"));
+            GridPane menuLayout = loader.load();
+
+            Scene scene = new Scene(menuLayout);
+            primaryStage.setScene(scene);
+
+            GestionTypeController controller = loader.getController();
+            controller.setMenuApp(this);
+
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /* void ajouterModifierType(Type typeSelected, String titre) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("FormulaireType.fxml"));
+            AnchorPane ajouterModifierOverview = (AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle(titre);
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+
+            Scene scene = new Scene(ajouterModifierOverview);
+
+            AjouterModifierTypeController ajouterModifierController = loader.getController();
+
+            ajouterModifierController.setDialogStage(dialogStage);
+            // ajouterModifierController.setTitle(titre);
+
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
 
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
 }
 
