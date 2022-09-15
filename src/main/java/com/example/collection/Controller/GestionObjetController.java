@@ -1,6 +1,6 @@
 package com.example.collection.Controller;
 
-import com.example.collection.DAO.InteractionBDD;
+//import com.example.collection.DAO.InteractionBDD;
 import com.example.collection.DAO.LigneProduitDAO;
 import com.example.collection.DAO.ProduitDAO;
 import com.example.collection.MenuApp;
@@ -110,7 +110,6 @@ public class GestionObjetController {
     @FXML
     private void initialize() {
         ///affichage dans la table///
-        InteractionBDD BDD = new InteractionBDD();
         List<Produit> listeProduits2 = new ArrayList<>();
         listeProduits2 = ProduitDAO.getProduits();
         Affichage.afficherProduits(listeProduits2);
@@ -193,7 +192,7 @@ public class GestionObjetController {
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
-        InteractionBDD BDD = new InteractionBDD();
+
 
         List<LigneProduit> listeProduits = new ArrayList<>();
         listeProduits = LigneProduitDAO.getLignesProduits();

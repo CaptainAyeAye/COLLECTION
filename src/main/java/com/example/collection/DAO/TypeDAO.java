@@ -1,14 +1,51 @@
 package com.example.collection.DAO;
 
 import com.example.collection.metier.Produit;
+import com.example.collection.metier.Referenciel;
+import com.example.collection.metier.Type;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
-public class TypeDAO {
+public class TypeDAO extends DAO<Type, Type> {
 
     private static final Connection connexion = CollectionConnect.getInstance();
+
+    public TypeDAO(Connection connexion) {
+super(connexion);
+    }
+
+    @Override
+    public Type getByID(int id) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Type> getAll() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Type> getLike(Type objet) {
+        return null;
+    }
+
+    @Override
+    public boolean insert(Type objet) {
+        return false;
+    }
+
+    @Override
+    public boolean update(Type object) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(Type object) {
+        return false;
+    }
 
     public static Produit getObjecType(int id){
         Produit produit = new Produit();
