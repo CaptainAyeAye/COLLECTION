@@ -60,6 +60,4 @@ public class Produit {
         this.caracteristiques.add(obj);
     }
 
-
-
 }

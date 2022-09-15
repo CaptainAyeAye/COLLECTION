@@ -66,7 +66,7 @@ public class ProduitDAO {
     }
 
 
-    public Produit getObjectById(int idObj){
+    public static Produit getObjectById(int idObj){
 
         List<LigneProduit> lignesProduits = new ArrayList<>();
         lignesProduits = LigneProduitDAO.getLignesProduits();
@@ -104,30 +104,66 @@ public class ProduitDAO {
         return produit;
 
     }
-/*
-    public void modifierObject(Produit newProduit){
+
+    public static void modifierObject(Produit newProduit) {
 
         int idObject = newProduit.getId();
-        Produit ancienProduit = this.getObjectById(idObject);
-        int i=0;
-        Object oldLigne;
+        Produit ancienProduit = getObjectById(idObject);
+        int i = 0;
+        LigneProduit oldLigne;
+        LigneProduit newLigne;
 
-        for(Object newLigne : newProduit.getCaracteristiques()){
-            oldLigne= ancienProduit.getCaracteristiques().get(i++);
-            if (newLigne != oldLigne){
-                this.modifierLigne(newLigne);
-            }
+        if (ancienProduit.getDescription() != newProduit.getDescription()) {
+            modifierDescription(newProduit);
         }
 
-        // si description change, methode changer description
+        for (i = 0; i < newProduit.getCaracteristiques().size(); i = i + 2) {
+            newLigne = new LigneProduit();
+            oldLigne = new LigneProduit();
+            newLigne.setIdObjet(idObject);
+            newLigne.setLibelleCaracteristique(newProduit.getCaracteristiques().get(i).toString());
+            oldLigne.setIdObjet(idObject);
+            oldLigne.setLibelleCaracteristique(ancienProduit.getCaracteristiques().get(i).toString());
 
+
+            if (newLigne == null) {
+
+            } else if (!OutilIsInteger.isNotInteger(newProduit.getCaracteristiques().get(i).toString())) {
+                System.out.println("Modification : entree de " + newProduit.getCaracteristiques().get(i + 1).toString() + " index " + i + " en double");
+                newLigne.setValeur(Double.parseDouble(newProduit.getCaracteristiques().get(i + 1).toString()));
+            } else {
+                System.out.println("Modification : entree de " + newProduit.getCaracteristiques().get(i + 1).toString() + " index " + i + " en varchar");
+                newLigne.setTexte(newProduit.getCaracteristiques().get(i + 1).toString());
+            }
+
+            if (newLigne != oldLigne) {
+                LigneProduitDAO.modifierLigne(newLigne);
+            }
+        }
     }
-*/
 
-    public void supprimerObject(int idObj){
+    private static void modifierDescription(Produit newProduit) {
+
+        String procedureStockee;
+        ResultSet rs;
+
+        procedureStockee = "{call modify_ligne (?, ?)}";
+
+        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+            cStmt.setInt(1, newProduit.getId());
+            cStmt.setString(2, newProduit.getDescription());
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void supprimerObject(int idObj){
         ResultSet rs;
         String procedureStockee = "{call dbo.delete_objet (?)}";
-        try (CallableStatement cStmt = this.connexion.prepareCall(procedureStockee)) {
+        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
             cStmt.setInt(1, idObj);
             cStmt.execute();
         }  catch (Exception e) {
@@ -137,7 +173,7 @@ public class ProduitDAO {
     }
 
 
-    public static void AjouterProduit(Produit produit){
+    public static void AjouterObjet(Produit produit){
 
         ResultSet rs;
         String procedureStockee = "{call check_type_exists (?)}";
@@ -163,6 +199,7 @@ public class ProduitDAO {
                     System.out.println("lecture index : "+i);
                     System.out.println("valeur : "+produit.getCaracteristiques().get(i));
                     if(produit.getCaracteristiques().get(i) == null){
+                        System.out.println("inserting "+produit.getCaracteristiques().get(i)+" as null");
                         cStmt.setString(3, null);
                         cStmt.setString(4, null);
                         i++;

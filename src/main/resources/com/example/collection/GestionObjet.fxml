@@ -166,7 +166,7 @@
                                     <Label fx:id="labelRepCar10" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                                     <Label fx:id="labelCar10" text="Caracteristique10 :" GridPane.rowIndex="12" />
                                         <Button mnemonicParsing="false" text="Supprimer" textFill="#00000073" GridPane.rowIndex="13" />
-                                        <Button mnemonicParsing="false" text="Modifier" textFill="#00000076" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                        <Button mnemonicParsing="false" onAction="#modifier" text="Modifier" textFill="#00000076" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                                       </children>
                                   </GridPane>
                            </children>

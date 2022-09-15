@@ -9,13 +9,12 @@ import com.example.collection.metier.Produit;
 import com.example.collection.outils.Affichage;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class GestionObjetController {
 
@@ -220,4 +219,56 @@ public class GestionObjetController {
             //serviceArticle.insertArticle(articleSelectionner);
         }
 
+
+
+    @FXML
+    public void supprimer() {
+
+        produitselected = articleTable.getSelectionModel().getSelectedItem();
+        if (produitselected != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.getButtonTypes().clear();
+            alert.getButtonTypes().add(ButtonType.YES);
+            alert.getButtonTypes().add(ButtonType.NO);
+            alert.setTitle("Fichier modifié");
+            alert.setContentText("Voulez vous supprimer le fichier ?");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                //serviceArticle.supprimer(articleSelected);
+                ProduitDAO.supprimerObject(produitselected.getId());
+                //filterArticle();
+
+            }
+        }
     }
+
+    @FXML
+    public void modifier() {
+
+        produitselected = articleTable.getSelectionModel().getSelectedItem();
+        Produit prod = new Produit();
+        prod.setId(1);
+        prod.setDescription("pouet");
+        prod.setType("piece");
+        /*prod.addCaracteristiques("annee");
+        prod.addCaracteristiques(4512);*/
+        prod.addCaracteristiques("devise");
+        prod.addCaracteristiques("dollar");
+        prod.addCaracteristiques("matiere");
+        prod.addCaracteristiques("or");
+        prod.addCaracteristiques("pays");
+        prod.addCaracteristiques("allemagne");
+        prod.addCaracteristiques("periode");
+        prod.addCaracteristiques(null);
+        prod.addCaracteristiques("prix");
+        prod.addCaracteristiques("8500");
+        prod.addCaracteristiques("theme");
+        prod.addCaracteristiques(null);
+        //menuApp.ajouterModifierArticle(produitselected, "Modifier article");
+       ProduitDAO.modifierObject(prod);
+        //filterArticle();
+
+    }
+
+}

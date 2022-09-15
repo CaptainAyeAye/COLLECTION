@@ -100,6 +100,19 @@ public class AjouterModifierProduitController {
 
     private Label titre;
 
+    private Stage dialogStage;
+
+
+
+    @FXML
+    private void initialize(){
+
+    }
+
+    public void SelectType(){
+
+    }
+
 
     public void modifierArticle(Produit produit) {
 
@@ -125,7 +138,7 @@ public class AjouterModifierProduitController {
         }
     }
 
-    private Stage dialogStage;
+
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;

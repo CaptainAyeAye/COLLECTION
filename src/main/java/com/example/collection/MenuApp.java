@@ -64,9 +64,9 @@ public class MenuApp extends Application {
             Scene scene = new Scene(ajouterModifierOverview);
 
             AjouterModifierProduitController ajouterModifierController = loader.getController();
+
             ajouterModifierController.setDialogStage(dialogStage);
-            //ajouterModifierController.modifierArticle(articleSelected);
-            ajouterModifierController.setTitle(titre);
+           // ajouterModifierController.setTitle(titre);
 
             dialogStage.setScene(scene);
             dialogStage.showAndWait();

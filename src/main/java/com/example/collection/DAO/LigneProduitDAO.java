@@ -42,4 +42,36 @@ public class LigneProduitDAO {
         return listeLignesProduits;
 
     }
+
+    public static void modifierLigne(LigneProduit newLigne) {
+        String procedureStockee;
+        ResultSet rs;
+
+        procedureStockee = "{call dbo.modifier_ligne_produit (?, ?, ?, ?)}";
+
+        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+            System.out.println("try : "+ newLigne.getIdObjet()+" "+newLigne.getLibelleCaracteristique()+" "+newLigne.getValeur()+" "+newLigne.getTexte());
+
+            cStmt.setInt(1, newLigne.getIdObjet());
+            cStmt.setString(2, newLigne.getLibelleCaracteristique());
+            cStmt.setDouble(3, newLigne.getValeur());
+            if(newLigne.getLibelleCaracteristique()=="annee"){
+                System.out.println("aaaah");
+                cStmt.setString(3, null);
+            }
+            cStmt.setString(4, newLigne.getTexte());
+            if(newLigne.getLibelleCaracteristique()=="annee"){
+                System.out.println("aaaah");
+                cStmt.setString(4, newLigne.getTexte()+"");
+            }
+
+            cStmt.execute();
+            rs = cStmt.getResultSet();
+
+            rs.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
