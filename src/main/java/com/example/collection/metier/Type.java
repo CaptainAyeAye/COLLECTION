@@ -13,14 +13,6 @@ public class Type {
         this.libelle_type = libelle_type;
     }
 
-    public Type(Integer id, String libelle)
-    {
-        this.id_type = id;
-        this.libelle_type = libelle;
-    }
-
-
-
 
     public Integer getId()
     {

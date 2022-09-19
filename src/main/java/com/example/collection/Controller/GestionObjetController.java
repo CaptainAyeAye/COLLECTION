@@ -186,9 +186,6 @@ public class GestionObjetController {
 
 
 
-
-
-
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
@@ -217,7 +214,6 @@ public class GestionObjetController {
             menuApp.ajouterModifierArticle(produit, "Ajouter un article");
             //serviceArticle.insertArticle(articleSelectionner);
         }
-
 
 
     @FXML

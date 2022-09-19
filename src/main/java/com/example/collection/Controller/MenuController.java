@@ -18,7 +18,6 @@ public class MenuController {
     @FXML
     private void ouvrirGestionType(){
         menuApp.showGestionType();
-
     }
 
     @FXML

@@ -34,8 +34,8 @@ public class GestionTypeController {
     public void ajouter() {
 
         typeSelected = null;
-        //Type type = new Type();
-       // menuApp.ajouterModifierArticle(type, "Ajouter un type");
+        Type type = new Type();
+        menuApp.ajouterModifierType(type, "Ajouter un type");
         //serviceArticle.insertArticle(articleSelectionner);
     }
     @FXML

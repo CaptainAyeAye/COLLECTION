@@ -107,6 +107,8 @@ public class AjouterModifierProduitController {
     @FXML
     private void initialize(){
 
+
+
     }
 
     public void SelectType(){

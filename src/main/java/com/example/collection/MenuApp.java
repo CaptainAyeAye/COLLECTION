@@ -1,10 +1,9 @@
 package com.example.collection;
 
-import com.example.collection.Controller.AjouterModifierProduitController;
-import com.example.collection.Controller.GestionObjetController;
-import com.example.collection.Controller.GestionTypeController;
-import com.example.collection.Controller.MenuController;
+import com.example.collection.Controller.*;
+import com.example.collection.metier.Caracteristique;
 import com.example.collection.metier.Produit;
+import com.example.collection.metier.Type;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -121,7 +120,6 @@ public class MenuApp extends Application {
 
 
            ajouterModifierController.setDialogStage(dialogStage);
-           // ajouterModifierController.setTitle(titre);
 
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
@@ -132,8 +130,7 @@ public class MenuApp extends Application {
         }
     }
 
-
-    /* void ajouterModifierType(Type typeSelected, String titre) {
+    public void ajouterModifierType(Type typeselected, String titre) {
 
         try {
 
@@ -149,10 +146,12 @@ public class MenuApp extends Application {
 
             Scene scene = new Scene(ajouterModifierOverview);
 
+            dialogStage.setScene(scene);
+
             AjouterModifierTypeController ajouterModifierController = loader.getController();
 
+
             ajouterModifierController.setDialogStage(dialogStage);
-            // ajouterModifierController.setTitle(titre);
 
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
@@ -161,6 +160,40 @@ public class MenuApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
+
+    public void ajouterModifierCaracteristique(Caracteristique caracteristiqueselected, String titre) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("FormulaireCaracteristique.fxml"));
+            AnchorPane ajouterModifierOverview = (AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            dialogStage.setTitle(titre);
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+
+            Scene scene = new Scene(ajouterModifierOverview);
+
+            dialogStage.setScene(scene);
+
+            AjouterModifierCaracteristiqueController ajouterModifierController = loader.getController();
+
+
+            ajouterModifierController.setDialogStage(dialogStage);
+
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
 
