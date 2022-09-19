@@ -107,6 +107,8 @@ public class GestionObjetController {
 
 
     private Produit produitselected;
+
+
     @FXML
     private void initialize() {
         ///affichage dans la table///

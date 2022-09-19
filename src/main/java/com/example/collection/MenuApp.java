@@ -73,7 +73,7 @@ public class MenuApp extends Application {
             loader.setLocation(MenuApp.class.getResource("GestionType.fxml"));
             GridPane layout = loader.load();
             menuLayout.setCenter(layout);
-            GestionObjetController controller = loader.getController();
+            GestionTypeController controller = loader.getController();
             controller.setMenuApp(this);
 
         } catch (IOException e) {
@@ -88,7 +88,7 @@ public class MenuApp extends Application {
             loader.setLocation(MenuApp.class.getResource("GestionCaracteristique.fxml"));
             GridPane layout = loader.load();
             menuLayout.setCenter(layout);
-            GestionObjetController controller = loader.getController();
+            GestionCaracteristiqueController controller = loader.getController();
             controller.setMenuApp(this);
 
         } catch (IOException e) {

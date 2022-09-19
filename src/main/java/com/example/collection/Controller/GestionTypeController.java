@@ -5,17 +5,22 @@ import com.example.collection.DAO.TypeDAO;
 import com.example.collection.MenuApp;
 import com.example.collection.metier.Produit;
 import com.example.collection.metier.Type;
+import com.example.collection.outils.Affichage;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class GestionTypeController {
@@ -24,7 +29,26 @@ public class GestionTypeController {
     private Type typeSelected;
 
     @FXML
+    private TableColumn<Type, Integer> idcolumn;
+
+    @FXML
+    private TableColumn<Type, String> libellecolumn;
+
+    @FXML
     private TableView<Type> typeTable;
+
+@FXML
+    private void initialize(){
+
+        List<Type> typeList = new ArrayList<>();
+        typeList = TypeDAO.getListType();
+        Affichage.afficherType(typeList);
+
+        typeTable.setItems(FXCollections.observableArrayList(typeList));
+   
+        idcolumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+        libellecolumn.setCellValueFactory(cellData -> cellData.getValue().libelleProperty());
+    }
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
     }
@@ -38,6 +62,8 @@ public class GestionTypeController {
         menuApp.ajouterModifierType(type, "Ajouter un type");
         //serviceArticle.insertArticle(articleSelectionner);
     }
+
+
     @FXML
     public void supprimer() {
 
@@ -53,7 +79,7 @@ public class GestionTypeController {
 
             if (result.isPresent() && result.get() == ButtonType.YES) {
                 //serviceArticle.supprimer(articleSelected);
-              //  TypeDAO.supprimerObject(typeSelected.getId());
+                //TypeDAO.supprimerObject(typeSelected.getId());
                 //filterArticle();
 
             }

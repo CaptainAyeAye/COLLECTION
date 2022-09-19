@@ -8,7 +8,9 @@ import com.example.collection.outils.OutilIsInteger;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TypeDAO extends DAO<Type, Type> {
 
@@ -46,6 +48,34 @@ public class TypeDAO extends DAO<Type, Type> {
     @Override
     public boolean delete(Type object) {
         return false;
+    }
+
+
+    public static List<Type> getListType(){
+
+        ResultSet rs;
+        String Statement = "SELECT * FROM TYPE";
+        List<Type> listeTypes= new ArrayList<Type>();
+        int i=0;
+
+        try (Statement cStmt = connexion.createStatement()) {
+
+           rs = cStmt.executeQuery(Statement);
+          //  rs = cStmt.getResultSet();
+
+            while (rs.next()) {
+                listeTypes.add(new Type());
+                listeTypes.get(i).setId(rs.getInt(1));
+                listeTypes.get(i++).setLibelle_type(rs.getString(2));
+
+            }
+
+            rs.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listeTypes;
     }
 
     public static Produit getObjecType(int id) {

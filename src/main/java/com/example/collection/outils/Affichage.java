@@ -2,6 +2,7 @@ package com.example.collection.outils;
 
 import com.example.collection.metier.LigneProduit;
 import com.example.collection.metier.Produit;
+import com.example.collection.metier.Type;
 
 import java.util.List;
 
@@ -30,6 +31,15 @@ public class Affichage {
             }
         }
 
+
+    }
+
+    public static void afficherType(List<Type> typeList){
+        System.out.println("Affichage type");
+        for (Type type : typeList) {
+            System.out.print("ID type : " + type.getId() + " ");
+            System.out.print("Libelle type : " + type.getLibelle() + " ");
+        }
 
     }
 

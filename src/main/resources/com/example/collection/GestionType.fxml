@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<GridPane prefHeight="498.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="498.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.collection.Controller.GestionTypeController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -22,10 +21,10 @@
             <Button fx:id="btnAjouter" layoutX="227.0" layoutY="382.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Ajouter" />
             <Button fx:id="btnModifier" layoutX="321.0" layoutY="382.0" mnemonicParsing="false" text="Modifier" />
             <Button fx:id="btnSupprimer" layoutX="404.0" layoutY="382.0" mnemonicParsing="false" text="Supprimer" />
-            <TableView fx:id="typeTable" layoutX="227.0" layoutY="14.0" prefHeight="348.0" prefWidth="249.0">
+            <TableView fx:id="typeTable" layoutX="235.0" layoutY="20.0" prefHeight="348.0" prefWidth="249.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="173.0" text="C2" />
+                <TableColumn fx:id="idcolumn" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="libellecolumn" prefWidth="173.0" text="nom" />
               </columns>
             </TableView>
          </children>

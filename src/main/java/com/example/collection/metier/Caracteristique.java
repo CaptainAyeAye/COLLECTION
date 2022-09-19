@@ -8,13 +8,7 @@ public class Caracteristique {
     private Boolean num;
     private Boolean texte;
 
-    public Caracteristique(Integer id_caracteristique, Integer libelle_caracteristique, Boolean liste, Boolean num, Boolean texte) {
-        this.id_caracteristique = id_caracteristique;
-        this.libelle_caracteristique = libelle_caracteristique;
-        this.liste = liste;
-        this.num = num;
-        this.texte = texte;
-    }
+
 
     public Integer getId_caracteristique() {
         return id_caracteristique;
