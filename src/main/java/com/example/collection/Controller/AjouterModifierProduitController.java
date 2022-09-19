@@ -138,6 +138,12 @@ public class AjouterModifierProduitController {
         }
     }
 
+    @FXML
+    public void abandonner() {
+        dialogStage.close();
+
+    }
+
 
 
     public void setDialogStage(Stage dialogStage) {

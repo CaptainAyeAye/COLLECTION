@@ -3,26 +3,21 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="598.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.collection.Accueil">
-   <children>
-      <BorderPane layoutX="-1.0" layoutY="-1.0" prefHeight="598.0" prefWidth="794.0">
-         <top>
-            <MenuBar BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="Gestion">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Gérer les Objets" />
-                        <MenuItem mnemonicParsing="false" text="Gérer les Types" />
-                        <MenuItem mnemonicParsing="false" text="Gérer les Caractéristiques" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </top>
-      </BorderPane>
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="598.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.collection.Controller.MenuController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Gestion">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#ouvrirGestionObjet" text="Gérer les Objets" />
+                  <MenuItem mnemonicParsing="false" onAction="#ouvrirGestionType" text="Gérer les Types" />
+                  <MenuItem mnemonicParsing="false" onAction="#ouvrirGestionCaracteristique" text="Gérer les Caractéristiques" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

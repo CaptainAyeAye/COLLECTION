@@ -1,4 +1,4 @@
-package com.example.collection;
+package com.example.collection.Controller;
 
 public class AjouterModifierTypeController {
 }

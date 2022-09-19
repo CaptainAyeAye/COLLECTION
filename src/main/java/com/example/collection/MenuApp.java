@@ -3,12 +3,14 @@ package com.example.collection;
 import com.example.collection.Controller.AjouterModifierProduitController;
 import com.example.collection.Controller.GestionObjetController;
 import com.example.collection.Controller.GestionTypeController;
+import com.example.collection.Controller.MenuController;
 import com.example.collection.metier.Produit;
-import com.example.collection.metier.Type;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -17,7 +19,10 @@ import java.io.IOException;
 
 public class MenuApp extends Application {
     private Stage dialogStage;
+
+    private BorderPane menuLayout;
     private Stage primaryStage;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -26,28 +31,73 @@ public class MenuApp extends Application {
     }
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+       /*
+       this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Gestion Objet");
-        showArticle();
-    }
-
-    private void showArticle() {
+        showGestionArticle();
+        */
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Menu General");
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MenuApp.class.getResource("GestionObjet.fxml"));
-            GridPane menuLayout = loader.load();
-
+            FXMLLoader myFXMLloader = new FXMLLoader(MenuApp.class.getResource("MenuGeneral.fxml"));
+            menuLayout = myFXMLloader.load();
             Scene scene = new Scene(menuLayout);
             primaryStage.setScene(scene);
-
-            GestionObjetController controller = loader.getController();
-            controller.setMenuApp(this);
-
+            MenuController menuController = myFXMLloader.getController();
+            menuController.setMainApp(this);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
     }
+
+    public void showGestionArticle() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionObjet.fxml"));
+            GridPane layout = loader.load();
+            menuLayout.setCenter(layout);
+            GestionObjetController controller = loader.getController();
+            controller.setMenuApp(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showGestionType(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionType.fxml"));
+            GridPane layout = loader.load();
+            menuLayout.setCenter(layout);
+            GestionObjetController controller = loader.getController();
+            controller.setMenuApp(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void showGestionCaracteristique(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("GestionCaracteristique.fxml"));
+            GridPane layout = loader.load();
+            menuLayout.setCenter(layout);
+            GestionObjetController controller = loader.getController();
+            controller.setMenuApp(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void ajouterModifierArticle(Produit articleSelected, String titre) {
 
@@ -65,9 +115,12 @@ public class MenuApp extends Application {
 
             Scene scene = new Scene(ajouterModifierOverview);
 
+            dialogStage.setScene(scene);
+
             AjouterModifierProduitController ajouterModifierController = loader.getController();
 
-            ajouterModifierController.setDialogStage(dialogStage);
+
+           ajouterModifierController.setDialogStage(dialogStage);
            // ajouterModifierController.setTitle(titre);
 
             dialogStage.setScene(scene);
@@ -79,23 +132,7 @@ public class MenuApp extends Application {
         }
     }
 
-    private void showType() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MenuApp.class.getResource("GestionType.fxml"));
-            GridPane menuLayout = loader.load();
 
-            Scene scene = new Scene(menuLayout);
-            primaryStage.setScene(scene);
-
-            GestionTypeController controller = loader.getController();
-            controller.setMenuApp(this);
-
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     /* void ajouterModifierType(Type typeSelected, String titre) {
 
         try {

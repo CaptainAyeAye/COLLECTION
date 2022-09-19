@@ -2,7 +2,6 @@ package com.example.collection.DAO;
 
 import com.example.collection.metier.LigneProduit;
 import com.example.collection.metier.Produit;
-import com.example.collection.metier.Type;
 import com.example.collection.outils.OutilIsInteger;
 
 
@@ -12,42 +11,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProduitDAO extends DAO<Produit, Produit> {
+public class ProduitDAO {
 
     private static final Connection connexion = CollectionConnect.getInstance();
 
     public ProduitDAO(Connection connexion) {
-        super(connexion);
-    }
-
-    @Override
-    public Produit getByID(int id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Produit> getAll() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Produit> getLike(Produit objet) {
-        return null;
-    }
-
-    @Override
-    public boolean insert(Produit objet) {
-        return false;
-    }
-
-    @Override
-    public boolean update(Produit object) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(Produit object) {
-        return false;
     }
 
 

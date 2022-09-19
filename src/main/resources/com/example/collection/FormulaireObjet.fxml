@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="598.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="598.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.collection.Controller.AjouterModifierProduitController">
    <children>
       <Label fx:id="titre" layoutX="255.0" layoutY="14.0" prefHeight="54.0" prefWidth="283.0" text="Formulaire Objet">
          <font>
@@ -86,6 +86,6 @@
          </content>
       </ScrollPane>
       <Button layoutX="255.0" layoutY="497.0" mnemonicParsing="false" text="Confirmer" textFill="#0000007f" />
-      <Button layoutX="463.0" layoutY="497.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Annuler" textFill="#0000007f" />
+      <Button layoutX="463.0" layoutY="497.0" mnemonicParsing="false" onAction="#abandonner" prefHeight="26.0" prefWidth="74.0" text="Annuler" textFill="#0000007f" />
    </children>
 </AnchorPane>

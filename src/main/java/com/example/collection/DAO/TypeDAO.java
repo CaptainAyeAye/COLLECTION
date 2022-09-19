@@ -15,7 +15,7 @@ public class TypeDAO extends DAO<Type, Type> {
     private static final Connection connexion = CollectionConnect.getInstance();
 
     public TypeDAO(Connection connexion) {
-super(connexion);
+        super(connexion);
     }
 
     @Override
@@ -48,7 +48,7 @@ super(connexion);
         return false;
     }
 
-    public static Produit getObjecType(int id){
+    public static Produit getObjecType(int id) {
         Produit produit = new Produit();
         ResultSet rs;
         String procedureStockee = "{call get_object_type (?)}";
@@ -65,8 +65,7 @@ super(connexion);
                 produit.setType(rs.getString(2));
             }
             rs.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -87,19 +86,18 @@ super(connexion);
                 idType = rs.getInt(1);
             }
             rs.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return idType;
     }
 
 
-   /* public static void remplirSchema(int idType, Produit schema) {
+    public static void remplirSchema(int idType, Produit schema) {
         String procedureStockee;
         ResultSet rs;
 
-       procedureStockee = "{call dbo.get_caracs_object (?)}";
+        procedureStockee = "{call dbo.get_caracs_object (?)}";
 
         try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
 
@@ -112,41 +110,40 @@ super(connexion);
                 schema.addCaracteristiques(rs.getString(1));
             }
             rs.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void modifierType(Type newProduit) {
+   /* public static void modifierType(Type newType) {
 
-        int idObject = newProduit.getId();
-        Produit ancienProduit = getIdType(idType);
+        int idType = newType.getId();
+        Type ancienType = getObjecType(idType);
         int i = 0;
         LigneProduit oldLigne;
         LigneProduit newLigne;
 
-        if (ancienProduit.getDescription() != newProduit.getLibelle()) {
-            modifierDescription(newProduit);
+        if (ancienProduit.getDescription() != newType.getLibelle()) {
+            modifierDescription(newType);
         }
 
-        for (i = 0; i < newProduit.getCaracteristiques().size(); i = i + 2) {
+        for (i = 0; i < newType.getCaracteristiques().size(); i = i + 2) {
             newLigne = new LigneProduit();
             oldLigne = new LigneProduit();
             newLigne.setIdObjet(idObject);
-            newLigne.setLibelleCaracteristique(newProduit.getCaracteristiques().get(i).toString());
+            newLigne.setLibelleCaracteristique(newType.getCaracteristiques().get(i).toString());
             oldLigne.setIdObjet(idObject);
             oldLigne.setLibelleCaracteristique(ancienProduit.getCaracteristiques().get(i).toString());
 
 
             if (newLigne == null) {
 
-            } else if (!OutilIsInteger.isNotInteger(newProduit.getCaracteristiques().get(i).toString())) {
-                System.out.println("Modification : entree de " + newProduit.getCaracteristiques().get(i + 1).toString() + " index " + i + " en double");
+            } else if (!OutilIsInteger.isNotInteger(newType.getCaracteristiques().get(i).toString())) {
+                System.out.println("Modification : entree de " + newType.getCaracteristiques().get(i + 1).toString() + " index " + i + " en double");
                 newLigne.setValeur(Double.parseDouble(newProduit.getCaracteristiques().get(i + 1).toString()));
             } else {
-                System.out.println("Modification : entree de " + newProduit.getCaracteristiques().get(i + 1).toString() + " index " + i + " en varchar");
-                newLigne.setTexte(newProduit.getCaracteristiques().get(i + 1).toString());
+                System.out.println("Modification : entree de " + newType.getCaracteristiques().get(i + 1).toString() + " index " + i + " en varchar");
+                newLigne.setTexte(newType.getCaracteristiques().get(i + 1).toString());
             }
 
             if (newLigne != oldLigne) {
