@@ -6,6 +6,7 @@ import com.example.collection.MenuApp;
 import com.example.collection.metier.Produit;
 import com.example.collection.metier.Type;
 import com.example.collection.outils.Affichage;
+import com.example.collection.service.ServiceType;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +38,8 @@ public class GestionTypeController {
     @FXML
     private TableView<Type> typeTable;
 
+    private ServiceType serviceType;
+
 @FXML
     private void initialize(){
 
@@ -45,7 +48,7 @@ public class GestionTypeController {
         Affichage.afficherType(typeList);
 
         typeTable.setItems(FXCollections.observableArrayList(typeList));
-   
+
         idcolumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         libellecolumn.setCellValueFactory(cellData -> cellData.getValue().libelleProperty());
     }
@@ -80,6 +83,8 @@ public class GestionTypeController {
             if (result.isPresent() && result.get() == ButtonType.YES) {
                 //serviceArticle.supprimer(articleSelected);
                 //TypeDAO.supprimerObject(typeSelected.getId());
+                serviceType.deleteType(typeSelected);
+
                 //filterArticle();
 
             }

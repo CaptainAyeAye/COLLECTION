@@ -2,6 +2,7 @@ package com.example.collection.DAO;
 
 import com.example.collection.metier.LigneProduit;
 import com.example.collection.metier.Produit;
+import com.example.collection.metier.Type;
 import com.example.collection.outils.OutilIsInteger;
 
 
@@ -11,11 +12,137 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProduitDAO {
+public class ProduitDAO extends DAO<Produit, Produit> {
 
     private static final Connection connexion = CollectionConnect.getInstance();
 
     public ProduitDAO(Connection connexion) {
+        super(connexion);
+    }
+
+    @Override
+    public Produit getByID(int id) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Produit> getAll() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Produit> getLike(Produit objet) {
+        return null;
+    }
+
+    @Override
+    public boolean insert(Produit objet) {
+        //return false;
+        ResultSet rs;
+        String procedureStockee = "{call check_type_exists (?)}";
+        int idType = 0;
+        int idObj = 0;
+        int i =0;
+        int j=0;
+        Produit schema = new Produit();
+
+        idType = TypeDAO.getIdType(objet, procedureStockee, idType);
+
+        if (idType !=0) {
+            TypeDAO.remplirSchema(idType, schema);
+
+            idObj = insererObject(objet.getDescription(), idType);
+
+            for (Object caracteristiqueSchema : schema.getCaracteristiques()) {
+
+                procedureStockee = "{call dbo.insert_caracteristique_objet (?, ?, ?, ?)}";
+                try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+                    cStmt.setInt(1, idObj);
+                    cStmt.setObject(2, objet.getCaracteristiques().get(i++));
+                    System.out.println("lecture index : "+i);
+                    System.out.println("valeur : "+objet.getCaracteristiques().get(i));
+                    if(objet.getCaracteristiques().get(i) == null){
+                        System.out.println("inserting "+objet.getCaracteristiques().get(i)+" as null");
+                        cStmt.setString(3, null);
+                        cStmt.setString(4, null);
+                        i++;
+                    }
+                    else if(!OutilIsInteger.isNotInteger(objet.getCaracteristiques().get(i).toString()) && objet.getCaracteristiques().get(i-1).toString()!= "annee"){
+                        System.out.println("inserting "+objet.getCaracteristiques().get(i)+" as numeric");
+                        cStmt.setInt(3, Integer.parseInt(objet.getCaracteristiques().get(i++).toString()));
+                        cStmt.setString(4, null);
+                    }
+                    else{
+                        System.out.println("inserting "+objet.getCaracteristiques().get(i)+" as varchar");
+                        cStmt.setString(3, null);
+                        cStmt.setObject(4, objet.getCaracteristiques().get(i++));
+                    }
+
+                    cStmt.execute();
+
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean update(Produit object) {
+       // return false;
+        int idObject = object.getId();
+        Produit ancienProduit = getObjectById(idObject);
+        int i = 0;
+        LigneProduit oldLigne;
+        LigneProduit newLigne;
+
+        if (ancienProduit.getDescription() != object.getDescription()) {
+            modifierDescription(object);
+        }
+
+        for (i = 0; i < object.getCaracteristiques().size(); i = i + 2) {
+            newLigne = new LigneProduit();
+            oldLigne = new LigneProduit();
+            newLigne.setIdObjet(idObject);
+            newLigne.setLibelleCaracteristique(object.getCaracteristiques().get(i).toString());
+            oldLigne.setIdObjet(idObject);
+            oldLigne.setLibelleCaracteristique(ancienProduit.getCaracteristiques().get(i).toString());
+
+
+            if (newLigne == null) {
+
+            } else if (!OutilIsInteger.isNotInteger(object.getCaracteristiques().get(i).toString())) {
+                System.out.println("Modification : entree de " + object.getCaracteristiques().get(i + 1).toString() + " index " + i + " en double");
+                newLigne.setValeur(Double.parseDouble(object.getCaracteristiques().get(i + 1).toString()));
+            } else {
+                System.out.println("Modification : entree de " + object.getCaracteristiques().get(i + 1).toString() + " index " + i + " en varchar");
+                newLigne.setTexte(object.getCaracteristiques().get(i + 1).toString());
+            }
+
+            if (newLigne != oldLigne) {
+                LigneProduitDAO.modifierLigne(newLigne);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean delete(Produit object) {
+        //return false;
+        ResultSet rs;
+        String procedureStockee = "{call dbo.delete_objet (?)}";
+        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+            cStmt.setInt(1, object.getId());
+            cStmt.execute();
+            return true;
+        }  catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 
@@ -66,7 +193,7 @@ public class ProduitDAO {
 
         return listeProduits;
 
-    }
+    } //mettre dans get all
 
 
     public static Produit getObjectById(int idObj){
@@ -108,42 +235,7 @@ public class ProduitDAO {
 
     }
 
-    public static void modifierObject(Produit newProduit) {
 
-        int idObject = newProduit.getId();
-        Produit ancienProduit = getObjectById(idObject);
-        int i = 0;
-        LigneProduit oldLigne;
-        LigneProduit newLigne;
-
-        if (ancienProduit.getDescription() != newProduit.getDescription()) {
-            modifierDescription(newProduit);
-        }
-
-        for (i = 0; i < newProduit.getCaracteristiques().size(); i = i + 2) {
-            newLigne = new LigneProduit();
-            oldLigne = new LigneProduit();
-            newLigne.setIdObjet(idObject);
-            newLigne.setLibelleCaracteristique(newProduit.getCaracteristiques().get(i).toString());
-            oldLigne.setIdObjet(idObject);
-            oldLigne.setLibelleCaracteristique(ancienProduit.getCaracteristiques().get(i).toString());
-
-
-            if (newLigne == null) {
-
-            } else if (!OutilIsInteger.isNotInteger(newProduit.getCaracteristiques().get(i).toString())) {
-                System.out.println("Modification : entree de " + newProduit.getCaracteristiques().get(i + 1).toString() + " index " + i + " en double");
-                newLigne.setValeur(Double.parseDouble(newProduit.getCaracteristiques().get(i + 1).toString()));
-            } else {
-                System.out.println("Modification : entree de " + newProduit.getCaracteristiques().get(i + 1).toString() + " index " + i + " en varchar");
-                newLigne.setTexte(newProduit.getCaracteristiques().get(i + 1).toString());
-            }
-
-            if (newLigne != oldLigne) {
-                LigneProduitDAO.modifierLigne(newLigne);
-            }
-        }
-    }
 
     private static void modifierDescription(Produit newProduit) {
 
@@ -163,70 +255,7 @@ public class ProduitDAO {
     }
 
 
-    public static void supprimerObject(int idObj){
-        ResultSet rs;
-        String procedureStockee = "{call dbo.delete_objet (?)}";
-        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
-            cStmt.setInt(1, idObj);
-            cStmt.execute();
-        }  catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-    public static void AjouterObjet(Produit produit){
-
-        ResultSet rs;
-        String procedureStockee = "{call check_type_exists (?)}";
-        int idType = 0;
-        int idObj = 0;
-        int i =0;
-        int j=0;
-        Produit schema = new Produit();
-
-        idType = TypeDAO.getIdType(produit, procedureStockee, idType);
-
-        if (idType !=0) {
-            TypeDAO.remplirSchema(idType, schema);
-
-            idObj = insererObject(produit.getDescription(), idType);
-
-            for (Object caracteristiqueSchema : schema.getCaracteristiques()) {
-
-                procedureStockee = "{call dbo.insert_caracteristique_objet (?, ?, ?, ?)}";
-                try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
-                    cStmt.setInt(1, idObj);
-                    cStmt.setObject(2, produit.getCaracteristiques().get(i++));
-                    System.out.println("lecture index : "+i);
-                    System.out.println("valeur : "+produit.getCaracteristiques().get(i));
-                    if(produit.getCaracteristiques().get(i) == null){
-                        System.out.println("inserting "+produit.getCaracteristiques().get(i)+" as null");
-                        cStmt.setString(3, null);
-                        cStmt.setString(4, null);
-                        i++;
-                    }
-                    else if(!OutilIsInteger.isNotInteger(produit.getCaracteristiques().get(i).toString()) && produit.getCaracteristiques().get(i-1).toString()!= "annee"){
-                        System.out.println("inserting "+produit.getCaracteristiques().get(i)+" as numeric");
-                        cStmt.setInt(3, Integer.parseInt(produit.getCaracteristiques().get(i++).toString()));
-                        cStmt.setString(4, null);
-                    }
-                    else{
-                        System.out.println("inserting "+produit.getCaracteristiques().get(i)+" as varchar");
-                        cStmt.setString(3, null);
-                        cStmt.setObject(4, produit.getCaracteristiques().get(i++));
-                    }
-
-                    cStmt.execute();
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-    }
+   /*  //à appeller*/
 
     private static int insererObject(String description, int idType) {
         String procedureStockee;
@@ -252,5 +281,5 @@ public class ProduitDAO {
             e.printStackTrace();
         }
         return idObj;
-    }
+    } //pas toucher besoin pour insert
 }

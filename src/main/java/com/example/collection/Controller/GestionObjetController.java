@@ -1,10 +1,9 @@
 package com.example.collection.Controller;
 
 //import com.example.collection.DAO.InteractionBDD;
-import com.example.collection.DAO.LigneProduitDAO;
 import com.example.collection.DAO.ProduitDAO;
 import com.example.collection.MenuApp;
-import com.example.collection.metier.LigneProduit;
+import com.example.collection.service.ServiceProduit;
 import com.example.collection.metier.Produit;
 import com.example.collection.outils.Affichage;
 import javafx.collections.FXCollections;
@@ -110,6 +109,11 @@ public class GestionObjetController {
 
 
     @FXML
+    private ServiceProduit serviceProduit;
+
+
+
+    @FXML
     private void initialize() {
         ///affichage dans la table///
         List<Produit> listeProduits2 = new ArrayList<>();
@@ -189,7 +193,7 @@ public class GestionObjetController {
 
 
     @FXML
-    protected void onHelloButtonClick() {
+   /* protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
 
 
@@ -200,7 +204,7 @@ public class GestionObjetController {
         List<Produit> listeProduits2 = new ArrayList<>();
         listeProduits2 = ProduitDAO.getProduits();
         Affichage.afficherProduits(listeProduits2);
-    }
+    }*/
 
 
     public void setMenuApp(MenuApp menuApp) {
@@ -232,8 +236,9 @@ public class GestionObjetController {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.YES) {
-                //serviceArticle.supprimer(articleSelected);
-                ProduitDAO.supprimerObject(produitselected.getId());
+                serviceProduit.deleteArticle(produitselected);
+
+               // ProduitDAO.supprimerObject(produitselected.getId());
                 //filterArticle();
 
             }
@@ -263,7 +268,7 @@ public class GestionObjetController {
         prod.addCaracteristiques("theme");
         prod.addCaracteristiques(null);
         //menuApp.ajouterModifierArticle(produitselected, "Modifier article");
-       ProduitDAO.modifierObject(prod);
+       serviceProduit.updateArticle(prod);
         //filterArticle();
 
     }

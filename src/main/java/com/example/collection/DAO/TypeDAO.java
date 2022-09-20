@@ -1,9 +1,7 @@
 package com.example.collection.DAO;
 
-import com.example.collection.metier.LigneProduit;
 import com.example.collection.metier.Produit;
 import com.example.collection.metier.Type;
-import com.example.collection.outils.OutilIsInteger;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -40,14 +38,77 @@ public class TypeDAO extends DAO<Type, Type> {
         return false;
     }
 
+    public static void AjouterType(Produit newType){
+
+        ResultSet rs;
+        String procedureStockee;
+
+
+        insertType(newType);
+
+        for (Object caracteristique : newType.getCaracteristiques()) {
+
+            String strCarac = caracteristique.toString();
+
+            procedureStockee = "{call dbo.ps_insert_caracteriser (?, ?)}";
+            try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+                cStmt.setString(1, newType.getType());
+                cStmt.setString(2, strCarac);
+
+
+                cStmt.execute();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
+    public static void insertType(Produit newType) {
+       // return false;
+        ResultSet rs;
+        String procedureStockee;
+        insertType(newType);
+
+        for (Object caracteristique : newType.getCaracteristiques()) {
+            String strCarac = caracteristique.toString();
+            procedureStockee = "{call dbo.ps_insert_type (?)}";
+            try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+                cStmt.setString(1, newType.getType());
+
+                cStmt.execute();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
     @Override
     public boolean update(Type object) {
         return false;
     }
 
+
+
     @Override
     public boolean delete(Type object) {
-        return false;
+        //return false;
+        ResultSet rs;
+        String procedureStockee = "{call dbo.ps_delete_type (?)}";
+        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+            cStmt.setString(1, object.getLibelle());
+            cStmt.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+
     }
 
 
