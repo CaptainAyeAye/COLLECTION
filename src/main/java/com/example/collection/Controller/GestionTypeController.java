@@ -3,9 +3,11 @@ package com.example.collection.Controller;
 import com.example.collection.DAO.ProduitDAO;
 import com.example.collection.DAO.TypeDAO;
 import com.example.collection.MenuApp;
+import com.example.collection.metier.Caracteristique;
 import com.example.collection.metier.Produit;
 import com.example.collection.metier.Type;
 import com.example.collection.outils.Affichage;
+import com.example.collection.service.ServiceType;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +30,8 @@ public class GestionTypeController {
     private MenuApp menuApp;
     private Type typeSelected;
 
+    private ArrayList<Caracteristique> listCaracteristique;
+
     @FXML
     private TableColumn<Type, Integer> idcolumn;
 
@@ -37,6 +41,8 @@ public class GestionTypeController {
     @FXML
     private TableView<Type> typeTable;
 
+    private ServiceType serviceType;
+
 @FXML
     private void initialize(){
 
@@ -45,7 +51,9 @@ public class GestionTypeController {
         Affichage.afficherType(typeList);
 
         typeTable.setItems(FXCollections.observableArrayList(typeList));
-   
+
+    //listCaracteristique.add(FXCollections.observableArrayList(serviceType.getCaracByType(typeSelected)));
+
         idcolumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         libellecolumn.setCellValueFactory(cellData -> cellData.getValue().libelleProperty());
     }
@@ -65,7 +73,6 @@ public class GestionTypeController {
         typeSelected = null;
         Type type = new Type();
         menuApp.ajouterModifierType(type, "Ajouter un type");
-        //serviceArticle.insertArticle(articleSelectionner);
     }
 
 
@@ -83,8 +90,7 @@ public class GestionTypeController {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.YES) {
-                //serviceArticle.supprimer(articleSelected);
-                //TypeDAO.supprimerObject(typeSelected.getId());
+                serviceType.deleteType(typeSelected);
                 //filterArticle();
 
             }
@@ -95,13 +101,15 @@ public class GestionTypeController {
     public void modifier() {
 
         typeSelected = typeTable.getSelectionModel().getSelectedItem();
-      //  Type type = new Type();
-      //  type.setId(1);
-       // type.setLibelle_type("pouet");
+        menuApp.ajouterModifierType(typeSelected, "Modifier un type");
 
-        //menuApp.ajouterModifierArticle(produitselected, "Modifier article");
-        //TypeDAO.modifierType(type);
-        //filterArticle();
+
+        /* TEST
+         Type type = new Type();
+        type.setId(1);
+        type.setLibelle_type("pouet");
+        filterArticle();
+        */
 
     }
 

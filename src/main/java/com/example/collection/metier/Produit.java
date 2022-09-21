@@ -15,6 +15,8 @@ public class Produit {
     private String description;
     private List<Object> caracteristiques = new ArrayList();
 
+
+
     public IntegerProperty idProperty()
     {
         return new SimpleIntegerProperty(id);

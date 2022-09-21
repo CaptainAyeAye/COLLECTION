@@ -12,7 +12,7 @@ public class LigneProduitDAO {
 
     private static final Connection connexion = CollectionConnect.getInstance();
 
-    public static List<LigneProduit> getLignesProduits(){
+    public static ArrayList<LigneProduit> getLignesProduits(){
         ResultSet rs;
         ArrayList<LigneProduit> listeLignesProduits = new ArrayList<>();
         String procedureStockee = "{call dbo.get_all_objects ()}";

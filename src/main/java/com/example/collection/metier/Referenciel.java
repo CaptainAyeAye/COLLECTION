@@ -3,9 +3,9 @@ package com.example.collection.metier;
 public class Referenciel {
     private Integer id_referenciel;
     private String libelle_referenciel;
-    private Caracteristique id_caracteristique;
+    private Integer id_caracteristique;
 
-    public Referenciel(Integer id_referenciel, String libelle_referenciel, Caracteristique id_caracteristique) {
+    public Referenciel(Integer id_referenciel, String libelle_referenciel, Integer id_caracteristique) {
         this.id_referenciel = id_referenciel;
         this.libelle_referenciel = libelle_referenciel;
         this.id_caracteristique = id_caracteristique;
@@ -27,11 +27,11 @@ public class Referenciel {
         this.libelle_referenciel = libelle_referenciel;
     }
 
-    public Caracteristique getId_caracteristique() {
+    public Integer getId_caracteristique() {
         return id_caracteristique;
     }
 
-    public void setId_caracteristique(Caracteristique id_caracteristique) {
+    public void setId_caracteristique(Integer id_caracteristique) {
         this.id_caracteristique = id_caracteristique;
     }
 }

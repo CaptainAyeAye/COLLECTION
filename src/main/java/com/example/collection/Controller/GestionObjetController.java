@@ -1,10 +1,10 @@
 package com.example.collection.Controller;
 
 //import com.example.collection.DAO.InteractionBDD;
-import com.example.collection.DAO.LigneProduitDAO;
+import com.example.collection.DAO.DAOfactory;
 import com.example.collection.DAO.ProduitDAO;
 import com.example.collection.MenuApp;
-import com.example.collection.metier.LigneProduit;
+import com.example.collection.service.ServiceProduit;
 import com.example.collection.metier.Produit;
 import com.example.collection.outils.Affichage;
 import javafx.collections.FXCollections;
@@ -109,11 +109,17 @@ public class GestionObjetController {
     private Produit produitselected;
 
 
+
+    @FXML
+    private ServiceProduit serviceProduit;
+
+
+
     @FXML
     private void initialize() {
         ///affichage dans la table///
-        List<Produit> listeProduits2 = new ArrayList<>();
-        listeProduits2 = ProduitDAO.getProduits();
+        ArrayList<Produit> listeProduits2 = new ArrayList<>();
+        listeProduits2 = DAOfactory.getProduitDAO().getAll();
         Affichage.afficherProduits(listeProduits2);
 
         articleTable.setItems(FXCollections.observableArrayList(listeProduits2));
@@ -189,7 +195,7 @@ public class GestionObjetController {
 
 
     @FXML
-    protected void onHelloButtonClick() {
+   /* protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
 
 
@@ -200,7 +206,7 @@ public class GestionObjetController {
         List<Produit> listeProduits2 = new ArrayList<>();
         listeProduits2 = ProduitDAO.getProduits();
         Affichage.afficherProduits(listeProduits2);
-    }
+    }*/
 
 
     public void setMenuApp(MenuApp menuApp) {
@@ -214,7 +220,7 @@ public class GestionObjetController {
             produitselected = null;
             Produit produit = new Produit();
             menuApp.ajouterModifierArticle(produit, "Ajouter un article");
-            //serviceArticle.insertArticle(articleSelectionner);
+
         }
 
 
@@ -232,8 +238,7 @@ public class GestionObjetController {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.YES) {
-                //serviceArticle.supprimer(articleSelected);
-                ProduitDAO.supprimerObject(produitselected.getId());
+                serviceProduit.deleteArticle(produitselected);
                 //filterArticle();
 
             }
@@ -244,12 +249,17 @@ public class GestionObjetController {
     public void modifier() {
 
         produitselected = articleTable.getSelectionModel().getSelectedItem();
+        menuApp.ajouterModifierArticle(produitselected, "Modifier un article");
+
+
+        /*  TEST
+        produitselected = articleTable.getSelectionModel().getSelectedItem();
         Produit prod = new Produit();
         prod.setId(1);
         prod.setDescription("pouet");
         prod.setType("piece");
-        /*prod.addCaracteristiques("annee");
-        prod.addCaracteristiques(4512);*/
+        prod.addCaracteristiques("annee");
+        prod.addCaracteristiques(4512);
         prod.addCaracteristiques("devise");
         prod.addCaracteristiques("dollar");
         prod.addCaracteristiques("matiere");
@@ -262,9 +272,10 @@ public class GestionObjetController {
         prod.addCaracteristiques("8500");
         prod.addCaracteristiques("theme");
         prod.addCaracteristiques(null);
-        //menuApp.ajouterModifierArticle(produitselected, "Modifier article");
-       ProduitDAO.modifierObject(prod);
-        //filterArticle();
+        menuApp.ajouterModifierArticle(produitselected, "Modifier article");
+       serviceProduit.updateArticle(prod);
+        filterArticle();
+        */
 
     }
 
