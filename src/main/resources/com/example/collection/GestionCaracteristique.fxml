@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<GridPane prefHeight="598.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="598.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.collection.Controller.GestionCaracteristiqueController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -21,8 +20,8 @@
          <children>
             <TableView fx:id="caracteristiqueTable" layoutX="270.0" layoutY="41.0" prefHeight="430.0" prefWidth="262.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="186.0" text="C2" />
+                <TableColumn fx:id="idcolumn" prefWidth="75.0" text="C1" />
+                <TableColumn fx:id="libellecolumn" prefWidth="186.0" text="C2" />
               </columns>
             </TableView>
             <Button fx:id="btnAjouter" layoutX="270.0" layoutY="509.0" mnemonicParsing="false" text="Ajouter" textFill="#00000080" />

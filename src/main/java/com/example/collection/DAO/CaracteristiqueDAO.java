@@ -5,7 +5,9 @@ import com.example.collection.metier.Caracteristique;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CaracteristiqueDAO extends DAO<Caracteristique,Caracteristique> {
 
@@ -22,8 +24,27 @@ public class CaracteristiqueDAO extends DAO<Caracteristique,Caracteristique> {
 
     @Override
     public ArrayList<Caracteristique> getAll() {
-        return null;
+        ArrayList<Caracteristique> list = new ArrayList<>();
+        try (Statement stmt = connexion.createStatement()) {
+            String strCmd = "SELECT distinct id_caracteristique, libelle_caracteristique from caracteristique";
+            ResultSet rs = stmt.executeQuery(strCmd);
+            // Couleur couleurLu = new Couleur();
+            Caracteristique caracteristiqueLu;
+            while (rs.next())
+            {
+                caracteristiqueLu = new Caracteristique(rs.getInt(1), rs.getString(2));
+                list.add(caracteristiqueLu);
+            }
+            rs.close();
+        }
+
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return list;
     }
+
 
     @Override
     public ArrayList<Caracteristique> getLike(Caracteristique objet) {

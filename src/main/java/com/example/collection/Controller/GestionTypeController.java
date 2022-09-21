@@ -49,6 +49,11 @@ public class GestionTypeController {
         idcolumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         libellecolumn.setCellValueFactory(cellData -> cellData.getValue().libelleProperty());
     }
+
+    private void afficherDetails(Type type) {
+
+
+    }
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
     }

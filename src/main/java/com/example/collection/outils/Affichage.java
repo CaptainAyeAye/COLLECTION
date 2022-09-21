@@ -1,5 +1,6 @@
 package com.example.collection.outils;
 
+import com.example.collection.metier.Caracteristique;
 import com.example.collection.metier.LigneProduit;
 import com.example.collection.metier.Produit;
 import com.example.collection.metier.Type;
@@ -43,4 +44,11 @@ public class Affichage {
 
     }
 
+    public static void afficherCaracteristique(List<Caracteristique> caracteristiqueList) {
+        System.out.println("Affichage caracteristique");
+        for (Caracteristique caracteristique : caracteristiqueList) {
+            System.out.print("ID type : " + caracteristique.getId_caracteristique() + " ");
+            System.out.print("Libelle type : " + caracteristique.getLibelle_caracteristique() + " ");
+        }
+    }
 }

@@ -29,9 +29,9 @@ public class Type {
     }
 
 
-public StringProperty libelleProperty(){
+    public StringProperty libelleProperty(){
         return new SimpleStringProperty(libelle_type);
-}
+    }
 
 
     public String getLibelle()
