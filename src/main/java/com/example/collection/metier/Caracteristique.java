@@ -8,6 +8,8 @@ public class Caracteristique {
     private Boolean num;
     private Boolean texte;
 
+    private Integer id_untite;
+
 
 
     public Integer getId_caracteristique() {

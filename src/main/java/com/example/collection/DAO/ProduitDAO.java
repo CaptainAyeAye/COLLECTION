@@ -9,6 +9,7 @@ import com.example.collection.outils.OutilIsInteger;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +23,91 @@ public class ProduitDAO extends DAO<Produit, Produit> {
 
     @Override
     public Produit getByID(int id) {
-        return null;
+        //return null;
+        List<LigneProduit> lignesProduits = new ArrayList<>();
+        lignesProduits = LigneProduitDAO.getLignesProduits();
+
+        Produit produit = new Produit();
+
+        int idActuel = 0;
+        Produit produitActuel = new Produit();
+        boolean first = false;
+
+        for (LigneProduit ligne : lignesProduits) {
+            if(!first){
+                produit.setId(ligne.getIdObjet());
+                produit = TypeDAO.getObjecType(ligne.getIdObjet());
+                idActuel= ligne.getIdObjet();
+                first = true;
+            }
+
+            produit.addCaracteristiques(ligne.getLibelleCaracteristique());
+            if(ligne.getLibelleReferenciel()!=null){
+                produit.addCaracteristiques(ligne.getLibelleReferenciel());
+            }
+            else if(ligne.getTexte()!=null){
+                produit.addCaracteristiques(ligne.getTexte());
+            }
+            else if(ligne.getValeur()!=0){
+                produit.addCaracteristiques(ligne.getValeur());
+            }
+            else{
+                produit.addCaracteristiques("null");
+            }
+
+        }
+
+        return produit;
+
     }
 
     @Override
-    public ArrayList<Produit> getAll() {
-        return null;
+    public ArrayList<Produit> getAll(){
+        //return null;
+        ArrayList<LigneProduit> lignesProduits = new ArrayList<>();
+        lignesProduits = LigneProduitDAO.getLignesProduits();
+
+        ArrayList<Produit> listeProduits = new ArrayList<>();
+
+        int idActuel = 0;
+        Produit produitActuel = new Produit();
+        int i = -1;
+
+        for (LigneProduit ligne : lignesProduits) {
+
+            if(idActuel != ligne.getIdObjet()){
+                //System.out.println("Creation nouvel objet");
+                produitActuel = new Produit();
+                produitActuel.setId(ligne.getIdObjet());
+                listeProduits.add(produitActuel);
+                produitActuel = TypeDAO.getObjecType(ligne.getIdObjet());
+                i++;
+                idActuel= ligne.getIdObjet();
+                listeProduits.get(i).setDescription(produitActuel.getDescription());
+                listeProduits.get(i).setType(produitActuel.getType());
+            }
+
+            listeProduits.get(i).addCaracteristiques(ligne.getLibelleCaracteristique());
+            //produitActuel.addCaracteristiques(ligne.getLibelleCaracteristique());
+            //System.out.println(ligne.getLibelleCaracteristique());
+            if(ligne.getLibelleReferenciel()!=null){
+                listeProduits.get(i).addCaracteristiques(ligne.getLibelleReferenciel());
+            }
+            else if(ligne.getTexte()!=null){
+                listeProduits.get(i).addCaracteristiques(ligne.getTexte());
+            }
+            else if(ligne.getValeur()!=0){
+                listeProduits.get(i).addCaracteristiques(ligne.getValeur());
+            }
+            else{
+                listeProduits.get(i).addCaracteristiques("null");
+            }
+
+        }
+
+
+
+        return listeProduits;
     }
 
     @Override
@@ -36,7 +116,7 @@ public class ProduitDAO extends DAO<Produit, Produit> {
     }
 
     @Override
-    public boolean insert(Produit objet) {
+    public boolean insert(Produit objet) throws SQLException {
         //return false;
         ResultSet rs;
         String procedureStockee = "{call check_type_exists (?)}";
@@ -52,6 +132,9 @@ public class ProduitDAO extends DAO<Produit, Produit> {
             TypeDAO.remplirSchema(idType, schema);
 
             idObj = insererObject(objet.getDescription(), idType);
+
+            try{
+                connexion.setAutoCommit(false);
 
             for (Object caracteristiqueSchema : schema.getCaracteristiques()) {
 
@@ -85,17 +168,23 @@ public class ProduitDAO extends DAO<Produit, Produit> {
                     e.printStackTrace();
 
                 }
-
             }
+                connexion.commit();
+            } //end try transaction
+                   catch (Exception e) {
+                connexion.rollback();
+            }
+
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
     public boolean update(Produit object) {
        // return false;
         int idObject = object.getId();
-        Produit ancienProduit = getObjectById(idObject);
+        Produit ancienProduit = getByID(idObject);
         int i = 0;
         LigneProduit oldLigne;
         LigneProduit newLigne;
@@ -146,96 +235,6 @@ public class ProduitDAO extends DAO<Produit, Produit> {
     }
 
 
-    public static List<Produit> getProduits() {
-
-        List<LigneProduit> lignesProduits = new ArrayList<>();
-        lignesProduits = LigneProduitDAO.getLignesProduits();
-
-        List<Produit> listeProduits = new ArrayList<>();
-
-        int idActuel = 0;
-        Produit produitActuel = new Produit();
-        int i = -1;
-
-        for (LigneProduit ligne : lignesProduits) {
-
-            if(idActuel != ligne.getIdObjet()){
-                //System.out.println("Creation nouvel objet");
-                produitActuel = new Produit();
-                produitActuel.setId(ligne.getIdObjet());
-                listeProduits.add(produitActuel);
-                produitActuel = TypeDAO.getObjecType(ligne.getIdObjet());
-                i++;
-                idActuel= ligne.getIdObjet();
-                listeProduits.get(i).setDescription(produitActuel.getDescription());
-                listeProduits.get(i).setType(produitActuel.getType());
-            }
-
-            listeProduits.get(i).addCaracteristiques(ligne.getLibelleCaracteristique());
-            //produitActuel.addCaracteristiques(ligne.getLibelleCaracteristique());
-            //System.out.println(ligne.getLibelleCaracteristique());
-            if(ligne.getLibelleReferenciel()!=null){
-                listeProduits.get(i).addCaracteristiques(ligne.getLibelleReferenciel());
-            }
-            else if(ligne.getTexte()!=null){
-                listeProduits.get(i).addCaracteristiques(ligne.getTexte());
-            }
-            else if(ligne.getValeur()!=0){
-                listeProduits.get(i).addCaracteristiques(ligne.getValeur());
-            }
-            else{
-                listeProduits.get(i).addCaracteristiques("null");
-            }
-
-        }
-
-
-
-        return listeProduits;
-
-    } //mettre dans get all
-
-
-    public static Produit getObjectById(int idObj){
-
-        List<LigneProduit> lignesProduits = new ArrayList<>();
-        lignesProduits = LigneProduitDAO.getLignesProduits();
-
-        Produit produit = new Produit();
-
-        int idActuel = 0;
-        Produit produitActuel = new Produit();
-        boolean first = false;
-
-        for (LigneProduit ligne : lignesProduits) {
-            if(!first){
-                produit.setId(ligne.getIdObjet());
-                produit = TypeDAO.getObjecType(ligne.getIdObjet());
-                idActuel= ligne.getIdObjet();
-                first = true;
-            }
-
-            produit.addCaracteristiques(ligne.getLibelleCaracteristique());
-            if(ligne.getLibelleReferenciel()!=null){
-                produit.addCaracteristiques(ligne.getLibelleReferenciel());
-            }
-            else if(ligne.getTexte()!=null){
-                produit.addCaracteristiques(ligne.getTexte());
-            }
-            else if(ligne.getValeur()!=0){
-                produit.addCaracteristiques(ligne.getValeur());
-            }
-            else{
-                produit.addCaracteristiques("null");
-            }
-
-        }
-
-        return produit;
-
-    }
-
-
 
     private static void modifierDescription(Produit newProduit) {
 
@@ -254,8 +253,6 @@ public class ProduitDAO extends DAO<Produit, Produit> {
         }
     }
 
-
-   /*  //à appeller*/
 
     private static int insererObject(String description, int idType) {
         String procedureStockee;

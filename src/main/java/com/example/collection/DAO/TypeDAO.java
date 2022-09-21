@@ -38,7 +38,7 @@ public class TypeDAO extends DAO<Type, Type> {
         return false;
     }
 
-    public static void AjouterType(Produit newType){
+    public static Boolean AjouterType(Produit newType){
 
         ResultSet rs;
         String procedureStockee;
@@ -57,12 +57,15 @@ public class TypeDAO extends DAO<Type, Type> {
 
 
                 cStmt.execute();
+
             }
             catch (Exception e) {
                 e.printStackTrace();
+                return false;
             }
 
         }
+        return true;
     }
 
 
@@ -181,6 +184,49 @@ public class TypeDAO extends DAO<Type, Type> {
             e.printStackTrace();
         }
         return idType;
+    }
+
+
+    public static Produit getCaracteristiquesTypes(String type) {
+        String procedureStockee;
+        ResultSet rs;
+
+        Produit currentType = new Produit();
+        currentType.setType(type);
+
+        procedureStockee = "{call dbo.ps_get_type_id (?)}";
+        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+
+            cStmt.setString(1, type);
+
+            cStmt.execute();
+            rs = cStmt.getResultSet();
+
+            while (rs.next()) {
+                currentType.setId(rs.getInt(1));
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        procedureStockee = "{call dbo.get_caracteristiques_type (?)}";
+        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+
+            cStmt.setString(1, type);
+
+            cStmt.execute();
+            rs = cStmt.getResultSet();
+
+            while (rs.next()) {
+                currentType.addCaracteristiques(rs.getString(1));
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return currentType;
     }
 
 

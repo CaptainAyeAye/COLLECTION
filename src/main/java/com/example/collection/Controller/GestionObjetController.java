@@ -1,6 +1,7 @@
 package com.example.collection.Controller;
 
 //import com.example.collection.DAO.InteractionBDD;
+import com.example.collection.DAO.DAOfactory;
 import com.example.collection.DAO.ProduitDAO;
 import com.example.collection.MenuApp;
 import com.example.collection.service.ServiceProduit;
@@ -108,6 +109,7 @@ public class GestionObjetController {
     private Produit produitselected;
 
 
+
     @FXML
     private ServiceProduit serviceProduit;
 
@@ -116,8 +118,8 @@ public class GestionObjetController {
     @FXML
     private void initialize() {
         ///affichage dans la table///
-        List<Produit> listeProduits2 = new ArrayList<>();
-        listeProduits2 = ProduitDAO.getProduits();
+        ArrayList<Produit> listeProduits2 = new ArrayList<>();
+        listeProduits2 = DAOfactory.getProduitDAO().getAll();
         Affichage.afficherProduits(listeProduits2);
 
         articleTable.setItems(FXCollections.observableArrayList(listeProduits2));
@@ -218,7 +220,7 @@ public class GestionObjetController {
             produitselected = null;
             Produit produit = new Produit();
             menuApp.ajouterModifierArticle(produit, "Ajouter un article");
-            //serviceArticle.insertArticle(articleSelectionner);
+
         }
 
 
@@ -237,8 +239,6 @@ public class GestionObjetController {
 
             if (result.isPresent() && result.get() == ButtonType.YES) {
                 serviceProduit.deleteArticle(produitselected);
-
-               // ProduitDAO.supprimerObject(produitselected.getId());
                 //filterArticle();
 
             }
@@ -249,12 +249,17 @@ public class GestionObjetController {
     public void modifier() {
 
         produitselected = articleTable.getSelectionModel().getSelectedItem();
+        menuApp.ajouterModifierArticle(produitselected, "Modifier un article");
+
+
+        /*  TEST
+        produitselected = articleTable.getSelectionModel().getSelectedItem();
         Produit prod = new Produit();
         prod.setId(1);
         prod.setDescription("pouet");
         prod.setType("piece");
-        /*prod.addCaracteristiques("annee");
-        prod.addCaracteristiques(4512);*/
+        prod.addCaracteristiques("annee");
+        prod.addCaracteristiques(4512);
         prod.addCaracteristiques("devise");
         prod.addCaracteristiques("dollar");
         prod.addCaracteristiques("matiere");
@@ -267,9 +272,10 @@ public class GestionObjetController {
         prod.addCaracteristiques("8500");
         prod.addCaracteristiques("theme");
         prod.addCaracteristiques(null);
-        //menuApp.ajouterModifierArticle(produitselected, "Modifier article");
+        menuApp.ajouterModifierArticle(produitselected, "Modifier article");
        serviceProduit.updateArticle(prod);
-        //filterArticle();
+        filterArticle();
+        */
 
     }
 

@@ -1,6 +1,7 @@
 package com.example.collection.DAO;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public abstract class DAO <T, S> {
@@ -18,7 +19,7 @@ public abstract class DAO <T, S> {
 
     public abstract ArrayList <T> getLike(S objet);
 
-    public abstract boolean insert(T objet);
+    public abstract boolean insert(T objet) throws SQLException;
 
     public abstract boolean update(T object);
 
