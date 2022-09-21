@@ -24,14 +24,14 @@ public class GestionCaracteristiqueController {
 
     private ServiceCaracteristique serviceCaracteristique;
 
-    @FXML
+    /*@FXML
     public void ajouter() {
 
         caracteristiqueselected = null;
         Caracteristique caracteristique = new Caracteristique();
         menuApp.ajouterModifierCaracteristique(caracteristique, "Ajouter un type");
         //serviceArticle.insertArticle(articleSelectionner);
-    }
+    }*/
 
     @FXML
     public void supprimer() {
