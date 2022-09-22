@@ -22,7 +22,7 @@ public class ServiceType {
         return DAOfactory.getTypeDAO().AjouterType(type);
     }
 
-    public Produit getCaracByType(Produit type){
+    public Produit getCaracByType(String type){
         return DAOfactory.getTypeDAO().getCaracteristiquesTypes(type);
     }
 

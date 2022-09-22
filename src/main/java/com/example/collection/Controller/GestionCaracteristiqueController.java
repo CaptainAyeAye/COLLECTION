@@ -1,15 +1,22 @@
 package com.example.collection.Controller;
 
+import com.example.collection.DAO.CaracteristiqueDAO;
+import com.example.collection.DAO.TypeDAO;
 import com.example.collection.MenuApp;
 import com.example.collection.metier.Caracteristique;
 import com.example.collection.metier.Produit;
 import com.example.collection.metier.Type;
+import com.example.collection.outils.Affichage;
 import com.example.collection.service.ServiceCaracteristique;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class GestionCaracteristiqueController {
@@ -23,6 +30,26 @@ public class GestionCaracteristiqueController {
     private MenuApp menuApp;
 
     private ServiceCaracteristique serviceCaracteristique;
+    @FXML
+    private TableColumn<Caracteristique, Integer> idcolumn;
+
+    @FXML
+    private TableColumn<Caracteristique, String> libellecolumn;
+
+    @FXML
+    private void initialize(){
+
+        List<Caracteristique> caracteristiqueList = new ArrayList<>();
+        caracteristiqueList = CaracteristiqueDAO.getListCaracteristique();
+        Affichage.afficherCaracteristique(caracteristiqueList);
+
+        caracteristiqueTable.setItems(FXCollections.observableArrayList(caracteristiqueList));
+
+        //listCaracteristique.add(FXCollections.observableArrayList(serviceType.getCaracByType(typeSelected)));
+
+        idcolumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+        libellecolumn.setCellValueFactory(cellData -> cellData.getValue().libelleProperty());
+    }
 
     /*@FXML
     public void ajouter() {

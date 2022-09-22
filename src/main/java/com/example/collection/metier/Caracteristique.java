@@ -13,9 +13,14 @@ public class Caracteristique {
     private Boolean num;
     private Boolean texte;
 
+
     public Caracteristique(Integer id_caracteristique, String libelle_caracteristique) {
         this.id_caracteristique = id_caracteristique;
         this.libelle_caracteristique = libelle_caracteristique;
+    }
+
+    public Caracteristique() {
+
     }
 
     public Integer getId_caracteristique() {
