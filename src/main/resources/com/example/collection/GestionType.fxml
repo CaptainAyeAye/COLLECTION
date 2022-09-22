@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="794.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.collection.Controller.GestionTypeController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -93,18 +93,50 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="36.0" minHeight="0.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="31.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="48.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="54.0" minHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="54.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <GridPane.margin>
                         <Insets left="15.0" right="15.0" />
                      </GridPane.margin>
+                     <children>
+                        <Label fx:id="labelId" text="ID :" />
+                        <Label fx:id="labelLibelle" text="Libellé :" GridPane.rowIndex="1" />
+                        <Label fx:id="labelCar1" text="Caracteristique 1 :" GridPane.rowIndex="2" />
+                        <Label fx:id="labelCar2" text="Caracteristique 2 :" GridPane.rowIndex="3" />
+                        <Label fx:id="labelCar3" text="Caracteristique 3 :" GridPane.rowIndex="4" />
+                        <Label fx:id="labelCar5" text="Caracteristique 5 :" GridPane.rowIndex="6" />
+                        <Label fx:id="labelCar4" text="Caracteristique 4 :" GridPane.rowIndex="5" />
+                        <Label fx:id="labelCar6" text="Caracteristique 6 :" GridPane.rowIndex="7" />
+                        <Label fx:id="labelCar7" text="Caracteristique 7 :" GridPane.rowIndex="8" />
+                        <Label fx:id="labelCar8" text="Caracteristique 8 :" GridPane.rowIndex="9" />
+                        <Label fx:id="labelCar9" text="Caracteristique 9 :" GridPane.rowIndex="10" />
+                        <Label fx:id="labelCar11" text="Caracteristique 11 :" GridPane.rowIndex="12" />
+                        <Label fx:id="labelCar10" text="Caracteristique 10 :" GridPane.rowIndex="11" />
+                        <Label fx:id="labelCar12" text="Caracteristique 12 :" GridPane.rowIndex="13" />
+                        <Label fx:id="labelCar13" text="Caracteristique 13 :" GridPane.rowIndex="14" />
+                        <Label fx:id="labelRepLibelle" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="labelRepCar1" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="labelRepCar2" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="labelRepCar3" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="labelRepCar4" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="labelRepCar5" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="labelRepCar6" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="labelRepCar7" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="labelRepCar8" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label fx:id="labelRepCar9" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label fx:id="labelRepCar10" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label fx:id="labelRepCar11" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                        <Label fx:id="labelRepCar12" prefHeight="17.0" prefWidth="31.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                        <Label fx:id="labelRepId" text="Label" GridPane.columnIndex="1" />
+                     </children>
                   </GridPane>
                   <Label text="Détails :">
                      <GridPane.margin>

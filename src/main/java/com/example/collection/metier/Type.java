@@ -5,12 +5,16 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Type {
 
     private int id_type;
     private String libelle_type;
 
 
+    private List<Object> type = new ArrayList();
 
 
 
@@ -33,7 +37,9 @@ public class Type {
         return new SimpleStringProperty(libelle_type);
     }
 
-
+    public List<Object> getCaracteristiquesType() {
+        return type;
+    }
     public String getLibelle()
     {
         return libelle_type;
