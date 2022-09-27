@@ -54,7 +54,27 @@ public class CaracteristiqueDAO extends DAO<Caracteristique,Caracteristique> {
 
     @Override
     public boolean insert(Caracteristique objet) {
-        return false;
+
+
+        ResultSet rs;
+
+        String procedureStockee = "{call dbo.insert_caracteristique (?)}";
+
+
+        try (CallableStatement cStmt = this.connexion.prepareCall(procedureStockee)) {
+
+            cStmt.setString(1, objet.getLibelle_caracteristique().toString());
+
+            cStmt.execute();
+            rs = cStmt.getResultSet();
+
+            rs.close();
+            return true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
@@ -64,7 +84,28 @@ public class CaracteristiqueDAO extends DAO<Caracteristique,Caracteristique> {
 
     @Override
     public boolean delete(Caracteristique object) {
-        return false;
+
+
+        ResultSet rs;
+
+        String procedureStockee = "{call dbo.delete_caracteristique (?)}";
+
+
+        try (CallableStatement cStmt = this.connexion.prepareCall(procedureStockee)) {
+
+            cStmt.setString(1, object.getLibelle_caracteristique().toString());
+
+            cStmt.execute();
+            rs = cStmt.getResultSet();
+
+            //while (rs.next()) {   newLigne.setIdObjet(rs.getInt(1));}
+            rs.close();
+            return true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public static List<Caracteristique> getListCaracteristique(){
@@ -94,49 +135,5 @@ public class CaracteristiqueDAO extends DAO<Caracteristique,Caracteristique> {
         return listeCaracteristique;
     }
 
-    public void supprimerCaracteristique(String carac){
-
-        ResultSet rs;
-
-        String procedureStockee = "{call dbo.delete_caracteristique (?)}";
-
-
-        try (CallableStatement cStmt = this.connexion.prepareCall(procedureStockee)) {
-
-            cStmt.setString(1, carac);
-
-            cStmt.execute();
-            rs = cStmt.getResultSet();
-
-            //while (rs.next()) {   newLigne.setIdObjet(rs.getInt(1));}
-            rs.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void creerCaracteristique(String carac){
-
-        ResultSet rs;
-
-        String procedureStockee = "{call dbo.insert_caracteristique (?)}";
-
-
-        try (CallableStatement cStmt = this.connexion.prepareCall(procedureStockee)) {
-
-            cStmt.setString(1, carac);
-
-            cStmt.execute();
-            rs = cStmt.getResultSet();
-
-            //while (rs.next()) {   newLigne.setIdObjet(rs.getInt(1));}
-            rs.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 }

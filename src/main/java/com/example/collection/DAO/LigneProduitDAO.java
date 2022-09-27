@@ -74,4 +74,35 @@ public class LigneProduitDAO {
             e.printStackTrace();
         }
     }
+
+
+    public static List<LigneProduit> getLignesProduitsById(int idObj) {
+        ResultSet rs;
+        ArrayList<LigneProduit> listeLignesProduits = new ArrayList<>();
+        String procedureStockee = "{call dbo.get_object_by_id (?)}";
+        System.out.println("Lecture des lignes objets");
+        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+            cStmt.setInt(1, idObj);
+            cStmt.execute();
+            rs = cStmt.getResultSet();
+
+            while (rs.next()) {
+
+                LigneProduit newLigne = new LigneProduit();
+                newLigne.setIdObjet(rs.getInt(1));
+                newLigne.setLibelleCaracteristique(rs.getString(2));
+                newLigne.setValeur(rs.getDouble(3));
+                newLigne.setTexte(rs.getString(4));
+                newLigne.setLibelleReferenciel(rs.getString(5));
+
+                listeLignesProduits.add(newLigne);
+
+            }
+            rs.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listeLignesProduits;
+    }
 }

@@ -18,12 +18,8 @@ public class ServiceType {
     }
 
 
-    public boolean insertType(Produit type) {
-        return DAOfactory.getTypeDAO().AjouterType(type);
-    }
-
-    public Produit getCaracByType(String type){
-        return DAOfactory.getTypeDAO().getCaracteristiquesTypes(type);
+    public boolean insertType(Type type) {
+        return DAOfactory.getTypeDAO().insert(type);
     }
 
 

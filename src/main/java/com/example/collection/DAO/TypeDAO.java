@@ -1,5 +1,6 @@
 package com.example.collection.DAO;
 
+import com.example.collection.metier.Caracteristique;
 import com.example.collection.metier.Produit;
 import com.example.collection.metier.Type;
 
@@ -25,7 +26,30 @@ public class TypeDAO extends DAO<Type, Type> {
 
     @Override
     public ArrayList<Type> getAll() {
-        return null;
+
+        ResultSet rs;
+        String Statement = "SELECT * FROM TYPE";
+        ArrayList<Type> listeTypes= new ArrayList<Type>();
+        int i=0;
+
+        try (Statement cStmt = connexion.createStatement()) {
+
+            rs = cStmt.executeQuery(Statement);
+            //  rs = cStmt.getResultSet();
+
+            while (rs.next()) {
+                listeTypes.add(new Type());
+                listeTypes.get(i).setId(rs.getInt(1));
+                listeTypes.get(i++).setLibelle_type(rs.getString(2));
+
+            }
+
+            rs.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listeTypes;
     }
 
     @Override
@@ -34,25 +58,21 @@ public class TypeDAO extends DAO<Type, Type> {
     }
 
     @Override
-    public boolean insert(Type objet) {
-        return false;
-    }
-
-    public static Boolean AjouterType(Produit newType){
+    public boolean insert(Type type) {
 
         ResultSet rs;
         String procedureStockee;
 
 
-        insertType(newType);
+        insertType(type);
 
-        for (Object caracteristique : newType.getCaracteristiques()) {
+        for (Object caracteristique : type.getCaracteristiquesType()) {
 
             String strCarac = caracteristique.toString();
 
             procedureStockee = "{call dbo.ps_insert_caracteriser (?, ?)}";
             try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
-                cStmt.setString(1, newType.getType());
+                cStmt.setString(1, type.getLibelle());
                 cStmt.setString(2, strCarac);
 
 
@@ -69,17 +89,18 @@ public class TypeDAO extends DAO<Type, Type> {
     }
 
 
-    public static void insertType(Produit newType) {
+
+    public static void insertType(Type newType) {
        // return false;
         ResultSet rs;
         String procedureStockee;
         insertType(newType);
 
-        for (Object caracteristique : newType.getCaracteristiques()) {
+        for (Object caracteristique : newType.getCaracteristiquesType()) {
             String strCarac = caracteristique.toString();
             procedureStockee = "{call dbo.ps_insert_type (?)}";
             try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
-                cStmt.setString(1, newType.getType());
+                cStmt.setString(1, newType.getLibelle());
 
                 cStmt.execute();
 
@@ -98,12 +119,12 @@ public class TypeDAO extends DAO<Type, Type> {
 
 
     @Override
-    public boolean delete(Type object) {
+    public boolean delete(Type type) {
         //return false;
         ResultSet rs;
         String procedureStockee = "{call dbo.ps_delete_type (?)}";
         try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
-            cStmt.setString(1, object.getLibelle());
+            cStmt.setString(1, type.getLibelle());
             cStmt.execute();
             return true;
         } catch (Exception e) {
@@ -115,32 +136,6 @@ public class TypeDAO extends DAO<Type, Type> {
     }
 
 
-    public static List<Type> getListType(){
-
-        ResultSet rs;
-        String Statement = "SELECT * FROM TYPE";
-        List<Type> listeTypes= new ArrayList<Type>();
-        int i=0;
-
-        try (Statement cStmt = connexion.createStatement()) {
-
-           rs = cStmt.executeQuery(Statement);
-          //  rs = cStmt.getResultSet();
-
-            while (rs.next()) {
-                listeTypes.add(new Type());
-                listeTypes.get(i).setId(rs.getInt(1));
-                listeTypes.get(i++).setLibelle_type(rs.getString(2));
-
-            }
-
-            rs.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listeTypes;
-    }
 
     public static Produit getObjecType(int id) {
         Produit produit = new Produit();
@@ -157,6 +152,7 @@ public class TypeDAO extends DAO<Type, Type> {
             while (rs.next()) {
                 produit.setDescription(rs.getString(1));
                 produit.setType(rs.getString(2));
+
             }
             rs.close();
         } catch (Exception e) {
@@ -187,23 +183,25 @@ public class TypeDAO extends DAO<Type, Type> {
     }
 
 
-    public static Produit getCaracteristiquesTypes(String type) {
+    public static List<Caracteristique> getCaracteristiquesTypes(Type type) {
         String procedureStockee;
         ResultSet rs;
 
-        Produit currentType = new Produit();
-        currentType.setType(type);
+        List<Caracteristique> typecaracList = new ArrayList<>();
+
+
+
 
         procedureStockee = "{call dbo.ps_get_type_id (?)}";
         try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
 
-            cStmt.setString(1, type);
+            cStmt.setString(1, type.getLibelle());
 
             cStmt.execute();
             rs = cStmt.getResultSet();
 
             while (rs.next()) {
-                currentType.setId(rs.getInt(1));
+                type.setId(rs.getInt(1));
             }
             rs.close();
         } catch (Exception e) {
@@ -214,19 +212,22 @@ public class TypeDAO extends DAO<Type, Type> {
         procedureStockee = "{call dbo.get_caracteristiques_type (?)}";
         try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
 
-            cStmt.setString(1, type);
+            cStmt.setString(1, type.getLibelle());
 
             cStmt.execute();
             rs = cStmt.getResultSet();
 
             while (rs.next()) {
-                currentType.addCaracteristiques(rs.getString(1));
+                Caracteristique caracteristique = new Caracteristique();
+                caracteristique.setLibelle_caracteristique(rs.getString(1));
+                typecaracList.add(caracteristique);
+
             }
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return currentType;
+        return typecaracList;
     }
 
 

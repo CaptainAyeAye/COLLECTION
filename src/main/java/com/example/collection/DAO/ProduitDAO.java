@@ -6,10 +6,7 @@ import com.example.collection.metier.Type;
 import com.example.collection.outils.OutilIsInteger;
 
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +60,7 @@ public class ProduitDAO extends DAO<Produit, Produit> {
 
     @Override
     public ArrayList<Produit> getAll(){
-        //return null;
+
         ArrayList<LigneProduit> lignesProduits = new ArrayList<>();
         lignesProduits = LigneProduitDAO.getLignesProduits();
 
@@ -223,8 +220,8 @@ public class ProduitDAO extends DAO<Produit, Produit> {
     public boolean delete(Produit object) {
         //return false;
         ResultSet rs;
-        String procedureStockee = "{call dbo.delete_objet (?)}";
-        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+
+        try (PreparedStatement cStmt = connexion.prepareStatement("delete from dbo.caracteristique_objet where id_objet = ?")) {
             cStmt.setInt(1, object.getId());
             cStmt.execute();
             return true;

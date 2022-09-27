@@ -1,6 +1,7 @@
 package com.example.collection.Controller;
 
 import com.example.collection.DAO.CaracteristiqueDAO;
+import com.example.collection.DAO.DAOfactory;
 import com.example.collection.DAO.TypeDAO;
 import com.example.collection.MenuApp;
 import com.example.collection.metier.Caracteristique;
@@ -40,7 +41,7 @@ public class GestionCaracteristiqueController {
     private void initialize(){
 
         List<Caracteristique> caracteristiqueList = new ArrayList<>();
-        caracteristiqueList = CaracteristiqueDAO.getListCaracteristique();
+        caracteristiqueList = DAOfactory.getCaracteristiqueDAO().getAll();
         Affichage.afficherCaracteristique(caracteristiqueList);
 
         caracteristiqueTable.setItems(FXCollections.observableArrayList(caracteristiqueList));

@@ -192,23 +192,6 @@ public class GestionObjetController {
 
     }
 
-
-
-    @FXML
-   /* protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-
-
-        List<LigneProduit> listeProduits = new ArrayList<>();
-        listeProduits = LigneProduitDAO.getLignesProduits();
-        Affichage.afficherLignesProduits(listeProduits);
-
-        List<Produit> listeProduits2 = new ArrayList<>();
-        listeProduits2 = ProduitDAO.getProduits();
-        Affichage.afficherProduits(listeProduits2);
-    }*/
-
-
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
     }

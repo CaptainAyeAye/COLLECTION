@@ -1,5 +1,6 @@
 package com.example.collection.Controller;
 
+import com.example.collection.DAO.DAOfactory;
 import com.example.collection.DAO.ProduitDAO;
 import com.example.collection.DAO.TypeDAO;
 import com.example.collection.MenuApp;
@@ -19,6 +20,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +28,7 @@ import java.util.Optional;
 public class GestionTypeController {
     @FXML
     private MenuApp menuApp;
+
     private Type typeSelected;
 
     private ArrayList<Caracteristique> listCaracteristique;
@@ -108,7 +111,7 @@ public class GestionTypeController {
     private void initialize(){
 
         List<Type> typeList = new ArrayList<>();
-        typeList = TypeDAO.getListType();
+        typeList = DAOfactory.getTypeDAO().getAll();
         Affichage.afficherType(typeList);
 
         typeTable.setItems(FXCollections.observableArrayList(typeList));
@@ -125,53 +128,75 @@ public class GestionTypeController {
     }
 
     private void afficherDetails(Type type) {
+    clear();
+    type.setCaracteristiquesType(TypeDAO.getCaracteristiquesTypes(type));
 
             labelRepId.setText(String.valueOf(type.getId()));
             labelRepLibelle.setText(type.getLibelle());
-
-            labelRepCar1.setText(type.getCaracteristiquesType().get(0).toString());
-            /*labelCar2.setText(type.getCaracteristiquesType().get(2).toString());
-            labelRepCar2.setText(type.getCaracteristiquesType().get(3).toString());
-            labelCar3.setText(type.getCaracteristiquesType().get(4).toString());
-            labelRepCar3.setText(type.getCaracteristiquesType().get(5).toString());
-            labelCar4.setText(type.getCaracteristiquesType().get(6).toString());
-            labelRepCar4.setText(type.getCaracteristiquesType().get(7).toString());
-            labelCar5.setText(type.getCaracteristiquesType().get(8).toString());
-            labelRepCar5.setText(type.getCaracteristiquesType().get(9).toString());
-            labelCar6.setText(type.getCaracteristiquesType().get(10).toString());
-            labelRepCar6.setText(type.getCaracteristiquesType().get(11).toString());
-            if (type.getCaracteristiquesType().size() > 13) {
-                labelCar7.setText(type.getCaracteristiquesType().get(12).toString());
-                labelRepCar7.setText(type.getCaracteristiquesType().get(13).toString());
-            } else {
-                labelCar7.setText(" ");
-                labelRepCar7.setText(" ");
+            labelRepCar1.setText(type.getCaracteristiquesType().get(1).getLibelle_caracteristique().toString());
+            labelCar1.setText("Caracteristique 1:");
+            labelRepCar2.setText(type.getCaracteristiquesType().get(2).getLibelle_caracteristique().toString());
+            labelCar2.setText("Caracteristique 2:");
+            labelRepCar3.setText(type.getCaracteristiquesType().get(3).getLibelle_caracteristique().toString());
+            labelCar3.setText("Caracteristique 3:");
+            labelRepCar4.setText(type.getCaracteristiquesType().get(4).getLibelle_caracteristique().toString());
+            labelCar4.setText("Caracteristique 4:");
+            if (type.getCaracteristiquesType().size() > 5) {
+                labelRepCar5.setText(type.getCaracteristiquesType().get(5).getLibelle_caracteristique().toString());
+                labelCar5.setText("Caracteristique 5:");
             }
-            if (type.getCaracteristiquesType().size() > 15) {
-                labelCar8.setText(type.getCaracteristiquesType().get(14).toString());
-                labelRepCar8.setText(type.getCaracteristiquesType().get(15).toString());
-            } else {
-                labelCar8.setText(" ");
-                labelRepCar8.setText(" ");
+            if (type.getCaracteristiquesType().size() > 6){
+                labelRepCar6.setText(type.getCaracteristiquesType().get(6).getLibelle_caracteristique().toString());
+                labelCar6.setText("Caracteristique 6:");
             }
-            if (type.getCaracteristiquesType().size() > 17) {
-                labelCar9.setText(type.getCaracteristiquesType().get(16).toString());
-                labelRepCar9.setText(type.getCaracteristiquesType().get(17).toString());
-            } else {
-                labelCar9.setText(" ");
-                labelRepCar9.setText(" ");
+            if (type.getCaracteristiquesType().size() > 7) {
+                labelRepCar7.setText(type.getCaracteristiquesType().get(7).getLibelle_caracteristique().toString());
+                labelCar7.setText("Caracteristique 7:");
             }
-            if (type.getCaracteristiquesType().size() > 19) {
-                labelCar10.setText(type.getCaracteristiquesType().get(18).toString());
-                labelRepCar10.setText(type.getCaracteristiquesType().get(19).toString());
-            } else {
-                labelCar10.setText(" ");
-                labelRepCar10.setText(" ");
-            }*/
+            if (type.getCaracteristiquesType().size() > 8) {
+                labelRepCar8.setText(type.getCaracteristiquesType().get(8).getLibelle_caracteristique().toString());
+                labelCar8.setText("Caracteristique 8:");
+            }
+            if (type.getCaracteristiquesType().size() > 9) {
+                labelRepCar9.setText(type.getCaracteristiquesType().get(9).getLibelle_caracteristique().toString());
+                labelCar9.setText("Caracteristique 9:");
+            }
+            if (type.getCaracteristiquesType().size() > 10) {
+                labelRepCar10.setText(type.getCaracteristiquesType().get(10).getLibelle_caracteristique().toString());
+                labelCar10.setText("Caracteristique 10:");
+            }
             detailDisable(true);
 
 
         }
+
+        public void clear(){
+
+            labelCar1.setText("");
+            labelRepCar1.setText("");
+            labelCar2.setText("");
+            labelRepCar2.setText("");
+            labelCar3.setText("");
+            labelRepCar3.setText("");
+            labelCar4.setText("");
+            labelRepCar4.setText("");
+            labelCar5.setText("");
+            labelRepCar5.setText("");
+            labelCar6.setText("");
+            labelRepCar6.setText("");
+            labelCar7.setText("");
+            labelRepCar7.setText("");
+            labelCar8.setText("");
+            labelRepCar8.setText("");
+            labelCar9.setText("");
+            labelRepCar9.setText("");
+            labelCar10.setText("");
+            labelRepCar10.setText("");
+
+        }
+
+
+
     public void detailDisable(boolean bool) {
         detailsShow.setVisible(bool);
     }

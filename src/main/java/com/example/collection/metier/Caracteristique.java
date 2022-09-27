@@ -69,4 +69,14 @@ public class Caracteristique {
         return new SimpleStringProperty(libelle_caracteristique);
     }
 
+    @Override
+    public String toString() {
+        return "Caracteristique{" +
+                "id_caracteristique=" + id_caracteristique +
+                ", libelle_caracteristique='" + libelle_caracteristique + '\'' +
+                ", liste=" + liste +
+                ", num=" + num +
+                ", texte=" + texte +
+                '}';
+    }
 }

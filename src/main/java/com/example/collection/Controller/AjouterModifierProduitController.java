@@ -1,8 +1,11 @@
 package com.example.collection.Controller;
 
+import com.example.collection.DAO.DAOfactory;
 import com.example.collection.metier.Caracteristique;
 import com.example.collection.metier.Produit;
 import com.example.collection.metier.Referenciel;
+import com.example.collection.service.ServiceProduit;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -102,10 +105,17 @@ public class AjouterModifierProduitController {
 
     private Stage dialogStage;
 
+    private ServiceProduit serviceProduit;
+
+    @FXML
+    private ComboBox<?> cbxType;
+
 
 
     @FXML
     private void initialize(){
+
+        //cbxType.setItems(FXCollections.observableList(serviceProduit.getTypeFiltrer()));
 
 
 

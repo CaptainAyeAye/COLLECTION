@@ -41,19 +41,15 @@ public class Produit {
     }
 
 
-    public StringProperty typeProperty()
-    {
+public StringProperty typeProperty(){
         return new SimpleStringProperty(type);
-    }
+}
     public String getType() {
         return type;
     }
     public void setType(String type) {
         this.type = type;
     }
-
-
-
 
     public List<Object> getCaracteristiques() {
         return caracteristiques;

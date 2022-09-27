@@ -31,5 +31,6 @@
             <Label text="Libellé :" />
          </children>
       </GridPane>
+      <Button layoutX="335.0" layoutY="244.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" text="Definir les caracteristique" />
    </children>
 </AnchorPane>

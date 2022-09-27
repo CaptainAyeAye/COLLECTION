@@ -17,5 +17,8 @@ public class ServiceCaracteristique {
     }
 
 
+    public boolean insertCaracteristique(Caracteristique caracteristique){
+        return DAOfactory.getCaracteristiqueDAO().insert(caracteristique);
+    }
 
 }

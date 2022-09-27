@@ -14,10 +14,14 @@ public class Type {
     private String libelle_type;
 
 
-    private List<Object> type = new ArrayList();
+    private List<Caracteristique> caracteristiquesType = new ArrayList();
 
-
-
+    @Override
+    public String toString() {
+        return "Type{" +
+                "caracteristiquesType=" + caracteristiquesType +
+                '}';
+    }
 
     public IntegerProperty idProperty()
     {
@@ -37,17 +41,25 @@ public class Type {
         return new SimpleStringProperty(libelle_type);
     }
 
-    public List<Object> getCaracteristiquesType() {
-        return type;
-    }
     public String getLibelle()
     {
         return libelle_type;
     }
 
-
     public void setLibelle_type(String libelle_type) {
         this.libelle_type = libelle_type;
     }
 
+
+    public List<Caracteristique> getCaracteristiquesType() {
+        return caracteristiquesType;
+    }
+
+    public void setCaracteristiquesType(List<Caracteristique> caracteristiquesType) {
+        this.caracteristiquesType = caracteristiquesType;
+    }
+
+    public void addCaracteristiques(Caracteristique caracteristique) {
+
+    }
 }
