@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.Objects;
+
 public class Caracteristique {
 
     private Integer id_caracteristique;
@@ -71,12 +73,19 @@ public class Caracteristique {
 
     @Override
     public String toString() {
-        return "Caracteristique{" +
-                "id_caracteristique=" + id_caracteristique +
-                ", libelle_caracteristique='" + libelle_caracteristique + '\'' +
-                ", liste=" + liste +
-                ", num=" + num +
-                ", texte=" + texte +
-                '}';
+        return libelle_caracteristique ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Caracteristique that = (Caracteristique) o;
+        return  Objects.equals(libelle_caracteristique, that.libelle_caracteristique);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_caracteristique, libelle_caracteristique, liste, num, texte);
     }
 }

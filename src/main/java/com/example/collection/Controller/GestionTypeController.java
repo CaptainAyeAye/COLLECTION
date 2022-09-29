@@ -241,15 +241,10 @@ public class GestionTypeController {
     public void modifier() {
 
         typeSelected = typeTable.getSelectionModel().getSelectedItem();
-        menuApp.ajouterModifierType(typeSelected, "Modifier un type");
 
 
-        /* TEST
-         Type type = new Type();
-        type.setId(1);
-        type.setLibelle_type("pouet");
-        filterArticle();
-        */
+       menuApp.ajouterModifierType(typeSelected, "Modifier un type");
+
 
     }
 

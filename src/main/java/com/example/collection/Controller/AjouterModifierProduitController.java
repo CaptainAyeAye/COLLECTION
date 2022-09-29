@@ -1,9 +1,7 @@
 package com.example.collection.Controller;
 
-import com.example.collection.DAO.DAOfactory;
-import com.example.collection.metier.Caracteristique;
 import com.example.collection.metier.Produit;
-import com.example.collection.metier.Referenciel;
+import com.example.collection.metier.Type;
 import com.example.collection.service.ServiceProduit;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -11,8 +9,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.text.BreakIterator;
 
 public class AjouterModifierProduitController {
     private Produit produit;
@@ -108,25 +104,23 @@ public class AjouterModifierProduitController {
     private ServiceProduit serviceProduit;
 
     @FXML
-    private ComboBox<?> cbxType;
+    private ComboBox<Type> cbxType;
 
 
 
     @FXML
     private void initialize(){
 
-        //cbxType.setItems(FXCollections.observableList(serviceProduit.getTypeFiltrer()));
+        serviceProduit = new ServiceProduit();
+        cbxType.setItems(FXCollections.observableArrayList(serviceProduit.getTypeFiltrer()));
 
 
 
     }
 
-    public void SelectType(){
-
-    }
 
 
-    public void modifierArticle(Produit produit) {
+    public void setArticle(Produit produit) {
 
         ///a voir plutard car pas fini///////
 

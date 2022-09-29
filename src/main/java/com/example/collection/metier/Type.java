@@ -16,13 +16,6 @@ public class Type {
 
     private List<Caracteristique> caracteristiquesType = new ArrayList();
 
-    @Override
-    public String toString() {
-        return "Type{" +
-                "caracteristiquesType=" + caracteristiquesType +
-                '}';
-    }
-
     public IntegerProperty idProperty()
     {
         return new SimpleIntegerProperty(id_type);
@@ -59,7 +52,12 @@ public class Type {
         this.caracteristiquesType = caracteristiquesType;
     }
 
-    public void addCaracteristiques(Caracteristique caracteristique) {
-
+    @Override
+    public String toString() {
+        return libelle_type ;
     }
+
+
+
+
 }

@@ -4,6 +4,7 @@ import com.example.collection.metier.LigneProduit;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,11 @@ public class LigneProduitDAO {
     public static ArrayList<LigneProduit> getLignesProduits(){
         ResultSet rs;
         ArrayList<LigneProduit> listeLignesProduits = new ArrayList<>();
-        String procedureStockee = "{call dbo.get_all_objects ()}";
-        System.out.println("Lecture des lignes objets");
-        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
+
+        try (PreparedStatement cStmt = connexion.prepareStatement("select distinct id_objet, libelle_caracteristique, valeur, caracteristique_objet.texte, libelle_referenciel from caracteristique_objet\n" +
+                "left join caracteristique on caracteristique_objet.id_caracteristique = caracteristique.id_caracteristique \n" +
+                "left join referenciel on caracteristique_objet.id_referenciel = referenciel.id_referenciel\n" +
+                "order by id_objet")){
 
             cStmt.execute();
             rs = cStmt.getResultSet();
@@ -56,12 +59,10 @@ public class LigneProduitDAO {
             cStmt.setString(2, newLigne.getLibelleCaracteristique());
             cStmt.setDouble(3, newLigne.getValeur());
             if(newLigne.getLibelleCaracteristique()=="annee"){
-                System.out.println("aaaah");
                 cStmt.setString(3, null);
             }
             cStmt.setString(4, newLigne.getTexte());
             if(newLigne.getLibelleCaracteristique()=="annee"){
-                System.out.println("aaaah");
                 cStmt.setString(4, newLigne.getTexte()+"");
             }
 

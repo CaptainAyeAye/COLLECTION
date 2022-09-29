@@ -72,31 +72,37 @@ public class ProduitDAO extends DAO<Produit, Produit> {
 
         for (LigneProduit ligne : lignesProduits) {
 
-            if(idActuel != ligne.getIdObjet()){
-                //System.out.println("Creation nouvel objet");
+            if (idActuel != ligne.getIdObjet()) {
                 produitActuel = new Produit();
                 produitActuel.setId(ligne.getIdObjet());
                 listeProduits.add(produitActuel);
-                produitActuel = TypeDAO.getObjecType(ligne.getIdObjet());
+                try {
+                    PreparedStatement stmt = connexion.prepareStatement("select description, libelle_type from objet join type on type.id_type = objet.id_type where objet.id_objet = ?");
+                    stmt.setInt(1, ligne.getIdObjet());
+                    ResultSet rs = stmt.executeQuery();
+                    while(rs.next()) {
+                        produitActuel.setDescription(rs.getString(1));
+                        produitActuel.setType(rs.getString(2));
+                    }
+                } catch (Exception e) {
+                    System.out.print("Fail");
+                    e.printStackTrace();
+                    System.out.println(e);
+                }
                 i++;
-                idActuel= ligne.getIdObjet();
+                idActuel = ligne.getIdObjet();
                 listeProduits.get(i).setDescription(produitActuel.getDescription());
                 listeProduits.get(i).setType(produitActuel.getType());
             }
 
             listeProduits.get(i).addCaracteristiques(ligne.getLibelleCaracteristique());
-            //produitActuel.addCaracteristiques(ligne.getLibelleCaracteristique());
-            //System.out.println(ligne.getLibelleCaracteristique());
-            if(ligne.getLibelleReferenciel()!=null){
+            if (ligne.getLibelleReferenciel() != null) {
                 listeProduits.get(i).addCaracteristiques(ligne.getLibelleReferenciel());
-            }
-            else if(ligne.getTexte()!=null){
+            } else if (ligne.getTexte() != null) {
                 listeProduits.get(i).addCaracteristiques(ligne.getTexte());
-            }
-            else if(ligne.getValeur()!=0){
+            } else if (ligne.getValeur() != 0) {
                 listeProduits.get(i).addCaracteristiques(ligne.getValeur());
-            }
-            else{
+            } else {
                 listeProduits.get(i).addCaracteristiques("null");
             }
 
@@ -108,7 +114,7 @@ public class ProduitDAO extends DAO<Produit, Produit> {
     }
 
     @Override
-    public ArrayList<Produit> getLike(Produit objet) {
+    public ArrayList<Produit> getLike(Produit objetSearch) {
         return null;
     }
 

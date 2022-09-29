@@ -4,10 +4,7 @@ import com.example.collection.metier.Caracteristique;
 import com.example.collection.metier.Produit;
 import com.example.collection.metier.Type;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +27,7 @@ public class TypeDAO extends DAO<Type, Type> {
         ResultSet rs;
         String Statement = "SELECT * FROM TYPE";
         ArrayList<Type> listeTypes= new ArrayList<Type>();
-        int i=0;
+
 
         try (Statement cStmt = connexion.createStatement()) {
 
@@ -38,9 +35,11 @@ public class TypeDAO extends DAO<Type, Type> {
             //  rs = cStmt.getResultSet();
 
             while (rs.next()) {
-                listeTypes.add(new Type());
-                listeTypes.get(i).setId(rs.getInt(1));
-                listeTypes.get(i++).setLibelle_type(rs.getString(2));
+
+                Type type = new Type();
+                type.setId(rs.getInt(1));
+                type.setLibelle_type(rs.getString(2));
+                listeTypes.add(type);
 
             }
 
@@ -120,21 +119,17 @@ public class TypeDAO extends DAO<Type, Type> {
 
     @Override
     public boolean delete(Type type) {
-        //return false;
-        ResultSet rs;
-        String procedureStockee = "{call dbo.ps_delete_type (?)}";
-        try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
-            cStmt.setString(1, type.getLibelle());
-            cStmt.execute();
-            return true;
+
+        try(PreparedStatement cStmt = connexion.prepareStatement("delete from type where id_type = ? "+
+                "delete from caracteriser where id_type = ?")){
+            cStmt.setInt(1, type.getId());
+            cStmt.setInt(2, type.getId());
+            return cStmt.execute();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-
-
     }
-
 
 
     public static Produit getObjecType(int id) {
@@ -253,40 +248,5 @@ public class TypeDAO extends DAO<Type, Type> {
         }
     }
 
-   /* public static void modifierType(Type newType) {
 
-        int idType = newType.getId();
-        Type ancienType = getObjecType(idType);
-        int i = 0;
-        LigneProduit oldLigne;
-        LigneProduit newLigne;
-
-        if (ancienProduit.getDescription() != newType.getLibelle()) {
-            modifierDescription(newType);
-        }
-
-        for (i = 0; i < newType.getCaracteristiques().size(); i = i + 2) {
-            newLigne = new LigneProduit();
-            oldLigne = new LigneProduit();
-            newLigne.setIdObjet(idObject);
-            newLigne.setLibelleCaracteristique(newType.getCaracteristiques().get(i).toString());
-            oldLigne.setIdObjet(idObject);
-            oldLigne.setLibelleCaracteristique(ancienProduit.getCaracteristiques().get(i).toString());
-
-
-            if (newLigne == null) {
-
-            } else if (!OutilIsInteger.isNotInteger(newType.getCaracteristiques().get(i).toString())) {
-                System.out.println("Modification : entree de " + newType.getCaracteristiques().get(i + 1).toString() + " index " + i + " en double");
-                newLigne.setValeur(Double.parseDouble(newProduit.getCaracteristiques().get(i + 1).toString()));
-            } else {
-                System.out.println("Modification : entree de " + newType.getCaracteristiques().get(i + 1).toString() + " index " + i + " en varchar");
-                newLigne.setTexte(newType.getCaracteristiques().get(i + 1).toString());
-            }
-
-            if (newLigne != oldLigne) {
-                LigneProduitDAO.modifierLigne(newLigne);
-            }
-        }
-    }*/
 }

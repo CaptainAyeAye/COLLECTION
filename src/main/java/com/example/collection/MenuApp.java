@@ -117,6 +117,7 @@ public class MenuApp extends Application {
             dialogStage.setScene(scene);
 
             AjouterModifierProduitController ajouterModifierController = loader.getController();
+            //ajouterModifierController.setArticle(articleSelected);
 
 
            ajouterModifierController.setDialogStage(dialogStage);
@@ -129,6 +130,44 @@ public class MenuApp extends Application {
             e.printStackTrace();
         }
     }
+
+    public void ajouterModifierCaracteristiqueType(Type typeselected){
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MenuApp.class.getResource("ListSelectionCaracteristique.fxml"));
+            AnchorPane ajouterModifierOverview = (AnchorPane) loader.load();
+
+            dialogStage = new Stage();
+            //dialogStage.setTitle(titre);
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+
+            Scene scene = new Scene(ajouterModifierOverview);
+
+            dialogStage.setScene(scene);
+
+            ListSelectionCaracteristiqueController ajouterModifierController = loader.getController();
+            ajouterModifierController.setType(typeselected);
+            ajouterModifierController.setMenuApp(this);
+            ajouterModifierController.loadComposant();
+
+
+
+            ajouterModifierController.setDialogStage(dialogStage);
+
+
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void ajouterModifierType(Type typeselected, String titre) {
 
@@ -149,9 +188,14 @@ public class MenuApp extends Application {
             dialogStage.setScene(scene);
 
             AjouterModifierTypeController ajouterModifierController = loader.getController();
+            ajouterModifierController.setType(typeselected);
+            ajouterModifierController.setMenuApp(this);
+            ajouterModifierController.remplir();
+
 
 
             ajouterModifierController.setDialogStage(dialogStage);
+
 
             dialogStage.setScene(scene);
             dialogStage.showAndWait();

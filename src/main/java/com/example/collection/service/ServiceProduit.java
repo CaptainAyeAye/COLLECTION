@@ -33,4 +33,6 @@ public class ServiceProduit {
     public ArrayList<Type> getTypeFiltrer() {
         return typeFiltrer;
     }
+
+
 }
