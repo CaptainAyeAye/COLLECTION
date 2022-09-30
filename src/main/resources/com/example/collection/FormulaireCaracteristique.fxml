@@ -5,9 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="598.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.collection.Controller.AjouterModifierCaracteristiqueController">
@@ -17,29 +14,14 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <GridPane layoutX="262.0" layoutY="141.0" prefHeight="280.0" prefWidth="270.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Libellé :" />
-            <Label text="Valeur numérique :" GridPane.rowIndex="2" />
-            <Label text="Valeur format texte :" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" />
-            <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Issue d'une liste :" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
+      <Label layoutX="238.0" layoutY="201.0" prefHeight="18.0" prefWidth="114.0" text="Libellé :" />
+      <Label layoutX="239.0" layoutY="253.0" prefHeight="18.0" prefWidth="114.0" text="Issue d'une liste :" />
+      <Label layoutX="239.0" layoutY="304.0" prefHeight="18.0" prefWidth="114.0" text="Valeur numérique :" />
+      <Label layoutX="239.0" layoutY="356.0" prefHeight="18.0" prefWidth="113.0" text="Valeur format texte :" />
+      <TextField layoutX="371.0" layoutY="198.0" />
+      <CheckBox fx:id="listeBox" layoutX="429.0" layoutY="254.0" mnemonicParsing="false" onAction="#choixListeBox" />
+      <CheckBox fx:id="numBox" layoutX="429.0" layoutY="305.0" mnemonicParsing="false" onAction="#choixNumBox" />
+      <CheckBox fx:id="texteBox" layoutX="429.0" layoutY="357.0" mnemonicParsing="false" onAction="#choixTexteBox" />
       <Button fx:id="btnConfirmer" layoutX="262.0" layoutY="498.0" mnemonicParsing="false" text="Confirmer" textFill="#00000080" />
       <Button fx:id="btnAnnuler" layoutX="474.0" layoutY="498.0" mnemonicParsing="false" text="Annuler" textFill="#00000080" />
    </children>
