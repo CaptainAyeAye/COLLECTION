@@ -46,20 +46,17 @@ public class GestionCaracteristiqueController {
 
         caracteristiqueTable.setItems(FXCollections.observableArrayList(caracteristiqueList));
 
-        //listCaracteristique.add(FXCollections.observableArrayList(serviceType.getCaracByType(typeSelected)));
-
         idcolumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         libellecolumn.setCellValueFactory(cellData -> cellData.getValue().libelleProperty());
     }
 
-    /*@FXML
+    @FXML
     public void ajouter() {
 
         caracteristiqueselected = null;
         Caracteristique caracteristique = new Caracteristique();
         menuApp.ajouterModifierCaracteristique(caracteristique, "Ajouter un type");
-        //serviceArticle.insertArticle(articleSelectionner);
-    }*/
+    }
 
     @FXML
     public void supprimer() {

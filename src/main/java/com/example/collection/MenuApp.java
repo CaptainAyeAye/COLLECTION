@@ -212,7 +212,7 @@ public class MenuApp extends Application {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MenuApp.class.getResource("FormulaireCaracteristique.fxml"));
-            AnchorPane ajouterModifierOverview = (AnchorPane) loader.load();
+            GridPane ajouterModifierOverview =  loader.load();
 
             dialogStage = new Stage();
             dialogStage.setTitle(titre);
@@ -225,6 +225,9 @@ public class MenuApp extends Application {
             dialogStage.setScene(scene);
 
             AjouterModifierCaracteristiqueController ajouterModifierController = loader.getController();
+            ajouterModifierController.setCaracteristique(caracteristiqueselected);
+            ajouterModifierController.setMenuApp(this);
+
 
 
             ajouterModifierController.setDialogStage(dialogStage);

@@ -230,36 +230,8 @@ public class GestionObjetController {
 
     @FXML
     public void modifier() {
-
         produitselected = articleTable.getSelectionModel().getSelectedItem();
         menuApp.ajouterModifierArticle(produitselected, "Modifier un article");
-
-
-        /*  TEST
-        produitselected = articleTable.getSelectionModel().getSelectedItem();
-        Produit prod = new Produit();
-        prod.setId(1);
-        prod.setDescription("pouet");
-        prod.setType("piece");
-        prod.addCaracteristiques("annee");
-        prod.addCaracteristiques(4512);
-        prod.addCaracteristiques("devise");
-        prod.addCaracteristiques("dollar");
-        prod.addCaracteristiques("matiere");
-        prod.addCaracteristiques("or");
-        prod.addCaracteristiques("pays");
-        prod.addCaracteristiques("allemagne");
-        prod.addCaracteristiques("periode");
-        prod.addCaracteristiques(null);
-        prod.addCaracteristiques("prix");
-        prod.addCaracteristiques("8500");
-        prod.addCaracteristiques("theme");
-        prod.addCaracteristiques(null);
-        menuApp.ajouterModifierArticle(produitselected, "Modifier article");
-       serviceProduit.updateArticle(prod);
-        filterArticle();
-        */
-
     }
 
 }

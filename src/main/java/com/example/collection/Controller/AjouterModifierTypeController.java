@@ -40,14 +40,12 @@ public class AjouterModifierTypeController {
     }
 
     public void setType(Type type) {
-        System.out.println("type");
         this.type = type;
     }
 
     @FXML
     public void initialize(){
         serviceType = new ServiceType();
-
     }
 
     @FXML

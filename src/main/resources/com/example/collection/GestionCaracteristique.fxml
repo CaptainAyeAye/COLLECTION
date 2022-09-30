@@ -52,13 +52,13 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnSupprimer" mnemonicParsing="false" text="Supprimer" textFill="#0000007f" GridPane.halignment="CENTER">
+                  <Button fx:id="btnSupprimer" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" textFill="#0000007f" GridPane.halignment="CENTER">
                      <GridPane.margin>
                         <Insets left="15.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="btnAjouter" mnemonicParsing="false" text="Ajouter" textFill="#00000080" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                  <Button fx:id="btnModifier" mnemonicParsing="false" text="Modifier" textFill="#0000007f" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                  <Button fx:id="btnAjouter" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" textFill="#00000080" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <Button fx:id="btnModifier" mnemonicParsing="false" onAction="#modifier" text="Modifier" textFill="#0000007f" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
             <TableView fx:id="caracteristiqueTable" prefHeight="473.0" prefWidth="336.0" GridPane.rowIndex="1">
