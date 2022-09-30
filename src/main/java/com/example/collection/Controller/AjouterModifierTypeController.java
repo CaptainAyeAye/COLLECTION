@@ -65,8 +65,7 @@ public class AjouterModifierTypeController {
     public void  confirmer(){
 
         type.setLibelle_type(txtType.getText());
-        System.out.println(type.getLibelle());
-        System.out.println(type.getCaracteristiquesType().toString());
+
       /*  if (dialogStage.getTitle().equals("Modifier article")) {
             serviceType.updateType(this.type);
         }
