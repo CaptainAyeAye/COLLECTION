@@ -66,7 +66,7 @@ public class AjouterModifierTypeController {
 
         type.setLibelle_type(txtType.getText());
 
-      /*  if (dialogStage.getTitle().equals("Modifier article")) {
+        if (dialogStage.getTitle().equals("Modifier article")) {
             serviceType.updateType(this.type);
         }
         if (dialogStage.getTitle().equals("Ajouter article")) {
@@ -75,7 +75,7 @@ public class AjouterModifierTypeController {
 
         dialogStage.close();
 
-       */
+
     }
 
 

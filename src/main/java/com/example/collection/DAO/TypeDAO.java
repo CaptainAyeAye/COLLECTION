@@ -111,10 +111,25 @@ public class TypeDAO extends DAO<Type, Type> {
     }
 
     @Override
-    public boolean update(Type object) {
-        return false;
-    }
+    public boolean update(Type type) {
+        //return false;
 
+        String str = "delete * from caracteriser where id_type = " + type.getId() + " " ;
+
+        for( int i=0 ; i < type.getCaracteristiquesType().size();i++){
+            str += " insert into caracteriser values("+type.getId()+", "+type.getCaracteristiquesType().get(i).getId_caracteristique()+")";
+        }
+
+        System.out.println("str = "+str);
+
+        try(PreparedStatement cStmt = connexion.prepareStatement(str)){
+            return cStmt.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
 
 
     @Override
