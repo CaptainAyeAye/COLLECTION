@@ -112,7 +112,7 @@ public class TypeDAO extends DAO<Type, Type> {
 
     @Override
     public boolean update(Type type) {
-        //return false;
+       
 
         String str = "delete * from caracteriser where id_type = " + type.getId() + " " ;
 
