@@ -16,9 +16,7 @@ import javafx.stage.Stage;
 
 public class AjouterModifierTypeController {
 
-    public void setMenuApp(MenuApp menuApp) {
-        this.menuApp = menuApp;
-    }
+
 
     private MenuApp menuApp;
 
@@ -34,6 +32,10 @@ public class AjouterModifierTypeController {
 
     @FXML
     private ListView<Caracteristique> listviewCaracteristique;
+
+    public void setMenuApp(MenuApp menuApp) {
+        this.menuApp = menuApp;
+    }
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -88,7 +90,6 @@ public class AjouterModifierTypeController {
 
             txtType.setText(type.getLibelle());
             txtType.setDisable(true);
-
             listviewCaracteristique.setItems(FXCollections.observableArrayList(type.getCaracteristiquesType()));
 
         }

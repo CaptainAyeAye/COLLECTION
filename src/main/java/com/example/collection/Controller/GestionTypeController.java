@@ -116,8 +116,6 @@ public class GestionTypeController {
 
         typeTable.setItems(FXCollections.observableArrayList(typeList));
 
-    //listCaracteristique.add(FXCollections.observableArrayList(serviceType.getCaracByType(typeSelected)));
-
         idcolumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         libellecolumn.setCellValueFactory(cellData -> cellData.getValue().libelleProperty());
 
@@ -213,6 +211,8 @@ public class GestionTypeController {
         typeSelected = null;
         Type type = new Type();
         menuApp.ajouterModifierType(type, "Ajouter un type");
+        typeTable.setItems(FXCollections.observableArrayList(DAOfactory.getTypeDAO().getAll()));
+
     }
 
 
@@ -231,7 +231,6 @@ public class GestionTypeController {
 
             if (result.isPresent() && result.get() == ButtonType.YES) {
                 serviceType.deleteType(typeSelected);
-                //filterArticle();
 
             }
         }
@@ -241,8 +240,6 @@ public class GestionTypeController {
     public void modifier() {
 
         typeSelected = typeTable.getSelectionModel().getSelectedItem();
-
-
        menuApp.ajouterModifierType(typeSelected, "Modifier un type");
 
 

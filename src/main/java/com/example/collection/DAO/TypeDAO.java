@@ -177,7 +177,7 @@ public class TypeDAO extends DAO<Type, Type> {
         ResultSet rs;
         try (CallableStatement cStmt = connexion.prepareCall(procedureStockee)) {
 
-            cStmt.setString(1, produit.getType());
+            cStmt.setString(1, produit.getType().toString());
 
             cStmt.execute();
             rs = cStmt.getResultSet();

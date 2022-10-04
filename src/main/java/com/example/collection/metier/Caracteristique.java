@@ -16,9 +16,12 @@ public class Caracteristique {
     private Boolean texte;
 
 
-    public Caracteristique(Integer id_caracteristique, String libelle_caracteristique) {
+    public Caracteristique(Integer id_caracteristique, String libelle_caracteristique, Boolean liste, Boolean num, Boolean texte) {
         this.id_caracteristique = id_caracteristique;
         this.libelle_caracteristique = libelle_caracteristique;
+        this.liste = liste;
+        this.num = num;
+        this.texte = texte;
     }
 
     public Caracteristique() {
@@ -64,9 +67,8 @@ public class Caracteristique {
     public void setTexte(Boolean texte) {
         this.texte = texte;
     }
-    public IntegerProperty idProperty()
-    {
-        return new SimpleIntegerProperty(id_caracteristique);}
+
+    public IntegerProperty idProperty() { return new SimpleIntegerProperty(id_caracteristique);}
     public StringProperty libelleProperty(){
         return new SimpleStringProperty(libelle_caracteristique);
     }

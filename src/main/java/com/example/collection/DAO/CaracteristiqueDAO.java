@@ -27,13 +27,13 @@ public class CaracteristiqueDAO extends DAO<Caracteristique,Caracteristique> {
     public ArrayList<Caracteristique> getAll() {
         ArrayList<Caracteristique> list = new ArrayList<>();
         try (Statement stmt = connexion.createStatement()) {
-            String strCmd = "SELECT distinct id_caracteristique, libelle_caracteristique from caracteristique";
+            String strCmd = "SELECT distinct * from caracteristique";
             ResultSet rs = stmt.executeQuery(strCmd);
             // Couleur couleurLu = new Couleur();
             Caracteristique caracteristiqueLu;
             while (rs.next())
             {
-                caracteristiqueLu = new Caracteristique(rs.getInt(1), rs.getString(2));
+                caracteristiqueLu = new Caracteristique(rs.getInt(1), rs.getString(2),rs.getBoolean(3),rs.getBoolean(4),rs.getBoolean(5));
                 list.add(caracteristiqueLu);
             }
             rs.close();

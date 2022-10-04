@@ -30,6 +30,7 @@ public class Affichage {
             for (Object caracteristique : produit.getCaracteristiques()) {
                 System.out.print(caracteristique + " , ");
             }
+            System.out.println(" ");
         }
 
 
@@ -40,6 +41,7 @@ public class Affichage {
         for (Type type : typeList) {
             System.out.print("ID type : " + type.getId() + " ");
             System.out.print("Libelle type : " + type.getLibelle() + " ");
+            System.out.println(" ");
         }
 
     }
@@ -47,8 +49,13 @@ public class Affichage {
     public static void afficherCaracteristique(List<Caracteristique> caracteristiqueList) {
         System.out.println("Affichage caracteristique");
         for (Caracteristique caracteristique : caracteristiqueList) {
-            System.out.print("ID type : " + caracteristique.getId_caracteristique() + " ");
-            System.out.print("Libelle type : " + caracteristique.getLibelle_caracteristique() + " ");
+            System.out.print("ID caracteristique : " + caracteristique.getId_caracteristique() + " ");
+            System.out.print("Libelle caracteristique : " + caracteristique.getLibelle_caracteristique() + " ");
+            System.out.print("stocker dans une liste : "+ caracteristique.getListe()+" ");
+            System.out.print("valeur numerique : "+ caracteristique.getNum()+" ");
+            System.out.print("valeur texte : "+caracteristique.getTexte()+" ");
+            System.out.println(" ");
+
         }
     }
 }

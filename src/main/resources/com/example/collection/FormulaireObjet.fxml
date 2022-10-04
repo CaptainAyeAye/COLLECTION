@@ -43,32 +43,33 @@
          </rowConstraints>
          <children>
             <Label fx:id="labelType1" text="Type :" />
-            <Label fx:id="labelCar2" GridPane.rowIndex="1" />
-            <Label fx:id="labelCar3" GridPane.rowIndex="2" />
-            <Label fx:id="labelCar4" GridPane.rowIndex="3" />
-            <Label fx:id="labelCar5" GridPane.rowIndex="4" />
-            <Label fx:id="labelCar6" GridPane.rowIndex="5" />
-            <Label fx:id="labelCar7" GridPane.rowIndex="6" />
-            <TextField fx:id="txt2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="labelCar8" GridPane.rowIndex="7" />
-            <Label fx:id="labelCar9" GridPane.rowIndex="8" />
-            <Label fx:id="labelCar10" GridPane.rowIndex="9" />
-            <Label fx:id="labelCar11" GridPane.rowIndex="10" />
-            <Label fx:id="labelCar12" GridPane.rowIndex="11" />
-            <Label fx:id="labelCar13" GridPane.rowIndex="12" />
-            <TextField fx:id="modifDentelure" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <TextField fx:id="modifTheme" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <TextField fx:id="modifAnnee" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-            <TextField fx:id="txt3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txt4" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="labelCar1" GridPane.rowIndex="1" />
+            <Label fx:id="labelCar2" GridPane.rowIndex="2" />
+            <Label fx:id="labelCar3" GridPane.rowIndex="3" />
+            <Label fx:id="labelCar4" GridPane.rowIndex="4" />
+            <Label fx:id="labelCar5" GridPane.rowIndex="5" />
+            <Label fx:id="labelCar6" GridPane.rowIndex="6" />
+            <TextField fx:id="txtfild1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="labelCar7" GridPane.rowIndex="7" />
+            <Label fx:id="labelCar8" GridPane.rowIndex="8" />
+            <Label fx:id="labelCar9" GridPane.rowIndex="9" />
+            <Label fx:id="labelCar10" GridPane.rowIndex="10" />
+            <Label fx:id="labelCar11" GridPane.rowIndex="11" />
+            <Label fx:id="labelCar12" GridPane.rowIndex="12" />
+            <TextField fx:id="txtfild10" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <TextField fx:id="txtfild11" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <TextField fx:id="txtfild12" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <TextField fx:id="txtfild2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtfild3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtfild4" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtfild5" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtfild6" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="txtfild7" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="txtfild8" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="txtfild9" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <ComboBox fx:id="cbxType" prefWidth="150.0" GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <TextField fx:id="txtfild13" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <Label fx:id="labelCar13" GridPane.rowIndex="13" />
          </children>
          <padding>
             <Insets left="22.0" right="22.0" />

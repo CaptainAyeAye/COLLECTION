@@ -18,11 +18,11 @@
       <Label layoutX="239.0" layoutY="253.0" prefHeight="18.0" prefWidth="114.0" text="Issue d'une liste :" />
       <Label layoutX="239.0" layoutY="304.0" prefHeight="18.0" prefWidth="114.0" text="Valeur numérique :" />
       <Label layoutX="239.0" layoutY="356.0" prefHeight="18.0" prefWidth="113.0" text="Valeur format texte :" />
-      <TextField layoutX="371.0" layoutY="198.0" />
+      <TextField fx:id="txtCaracteristique" layoutX="371.0" layoutY="198.0" />
       <CheckBox fx:id="listeBox" layoutX="429.0" layoutY="254.0" mnemonicParsing="false" onAction="#choixListeBox" />
       <CheckBox fx:id="numBox" layoutX="429.0" layoutY="305.0" mnemonicParsing="false" onAction="#choixNumBox" />
       <CheckBox fx:id="texteBox" layoutX="429.0" layoutY="357.0" mnemonicParsing="false" onAction="#choixTexteBox" />
-      <Button fx:id="btnConfirmer" layoutX="262.0" layoutY="498.0" mnemonicParsing="false" text="Confirmer" textFill="#00000080" />
-      <Button fx:id="btnAnnuler" layoutX="474.0" layoutY="498.0" mnemonicParsing="false" text="Annuler" textFill="#00000080" />
+      <Button fx:id="btnConfirmer" layoutX="262.0" layoutY="498.0" mnemonicParsing="false" onAction="#confirmer" text="Confirmer" textFill="#00000080" />
+      <Button fx:id="btnAnnuler" layoutX="474.0" layoutY="498.0" mnemonicParsing="false" onAction="#abandonner" text="Annuler" textFill="#00000080" />
    </children>
 </AnchorPane>

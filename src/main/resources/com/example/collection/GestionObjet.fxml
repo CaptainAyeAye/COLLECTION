@@ -169,14 +169,14 @@
                                                 <Label fx:id="labelId" text=" ID :" />
                                                 <Label fx:id="labelDescription" text="Description :" GridPane.rowIndex="1" />
                                                 <Label fx:id="labelType" text="Type :" GridPane.rowIndex="2" />
-                                                <Label fx:id="labelCar1" text="Caracteristique1 :" GridPane.rowIndex="3" />
-                                                <Label fx:id="labelCar2" text="Caracteristique2 :" GridPane.rowIndex="4" />
-                                                <Label fx:id="labelCar3" text="Caracteristique3 :" GridPane.rowIndex="5" />
-                                                <Label fx:id="labelCar4" text="Caracteristique4 :" GridPane.rowIndex="6" />
-                                                <Label fx:id="labelCar5" text="Caracteristique5 :" GridPane.rowIndex="7" />
-                                                <Label fx:id="labelCar6" text="Caracteristique6 :" GridPane.rowIndex="8" />
-                                                <Label fx:id="labelCar7" text="Caracteristique7 :" GridPane.rowIndex="9" />
-                                                <Label fx:id="labelCar8" text="Caracteristique8 :" GridPane.rowIndex="10" />
+                                                <Label fx:id="labelCar1" GridPane.rowIndex="3" />
+                                                <Label fx:id="labelCar2" GridPane.rowIndex="4" />
+                                                <Label fx:id="labelCar3" GridPane.rowIndex="5" />
+                                                <Label fx:id="labelCar4" GridPane.rowIndex="6" />
+                                                <Label fx:id="labelCar5" GridPane.rowIndex="7" />
+                                                <Label fx:id="labelCar6" GridPane.rowIndex="8" />
+                                                <Label fx:id="labelCar7" GridPane.rowIndex="9" />
+                                                <Label fx:id="labelCar8" GridPane.rowIndex="10" />
                                                 <Label fx:id="LabelNom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label fx:id="LabelPrix" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                 <Label fx:id="LabelVolume" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -188,21 +188,21 @@
                                                 <Label fx:id="LabelCouleur" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                                                 <Label fx:id="LabelType" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                                                 <Label fx:id="LabelId" GridPane.columnIndex="1" />
-                                          <Label fx:id="labelCar9" text="Caracteristique9 :" GridPane.rowIndex="11" />
+                                          <Label fx:id="labelCar9" GridPane.rowIndex="11" />
                                           <Label fx:id="labelRepId" text="Label" GridPane.columnIndex="1" />
                                           <Label fx:id="labelRepDescription" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <Label fx:id="labelRepType" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Label fx:id="labelRepCar1" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                          <Label fx:id="labelRepCar2" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                          <Label fx:id="labelRepCar3" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                          <Label fx:id="labelRepCar4" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                          <Label fx:id="labelRepCar5" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                          <Label fx:id="labelRepCar6" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                          <Label fx:id="labelRepCar7" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                          <Label fx:id="labelRepCar8" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                          <Label fx:id="labelRepCar9" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                                          <Label fx:id="labelRepCar10" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                                          <Label fx:id="labelCar10" text="Caracteristique10 :" GridPane.rowIndex="12" />
+                                          <Label fx:id="labelRepCar1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Label fx:id="labelRepCar2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <Label fx:id="labelRepCar3" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <Label fx:id="labelRepCar4" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <Label fx:id="labelRepCar5" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                          <Label fx:id="labelRepCar6" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                          <Label fx:id="labelRepCar7" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                          <Label fx:id="labelRepCar8" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                          <Label fx:id="labelRepCar9" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                          <Label fx:id="labelRepCar10" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                          <Label fx:id="labelCar10" GridPane.rowIndex="12" />
                                               <Button mnemonicParsing="false" onAction="#supprimer" text="Supprimer" textFill="#00000073" GridPane.rowIndex="13" />
                                               <Button mnemonicParsing="false" onAction="#modifier" text="Modifier" textFill="#00000076" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                                             </children>

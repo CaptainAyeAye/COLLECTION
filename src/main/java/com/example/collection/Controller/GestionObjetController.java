@@ -141,8 +141,7 @@ public class GestionObjetController {
     }
 
     private void afficherDetails(Produit produit) {
-
-
+        clear();
 
         labelRepId.setText(String.valueOf(produit.getId()));
         labelRepDescription.setText(produit.getDescription());
@@ -162,33 +161,46 @@ public class GestionObjetController {
         if (produit.getCaracteristiques().size() > 13) {
             labelCar7.setText(produit.getCaracteristiques().get(12).toString());
             labelRepCar7.setText(produit.getCaracteristiques().get(13).toString());
-        } else {
-            labelCar7.setText(" ");
-            labelRepCar7.setText(" ");
         }
         if (produit.getCaracteristiques().size() > 15) {
             labelCar8.setText(produit.getCaracteristiques().get(14).toString());
             labelRepCar8.setText(produit.getCaracteristiques().get(15).toString());
-        } else {
-            labelCar8.setText(" ");
-            labelRepCar8.setText(" ");
         }
         if (produit.getCaracteristiques().size() > 17) {
             labelCar9.setText(produit.getCaracteristiques().get(16).toString());
             labelRepCar9.setText(produit.getCaracteristiques().get(17).toString());
-        } else {
-            labelCar9.setText(" ");
-            labelRepCar9.setText(" ");
         }
         if (produit.getCaracteristiques().size() > 19) {
             labelCar10.setText(produit.getCaracteristiques().get(18).toString());
             labelRepCar10.setText(produit.getCaracteristiques().get(19).toString());
-        } else {
-            labelCar10.setText(" ");
-            labelRepCar10.setText(" ");
         }
         detailDisable(true);
 
+
+    }
+
+    public void clear(){
+
+        labelCar1.setText("");
+        labelRepCar1.setText("");
+        labelCar2.setText("");
+        labelRepCar2.setText("");
+        labelCar3.setText("");
+        labelRepCar3.setText("");
+        labelCar4.setText("");
+        labelRepCar4.setText("");
+        labelCar5.setText("");
+        labelRepCar5.setText("");
+        labelCar6.setText("");
+        labelRepCar6.setText("");
+        labelCar7.setText("");
+        labelRepCar7.setText("");
+        labelCar8.setText("");
+        labelRepCar8.setText("");
+        labelCar9.setText("");
+        labelRepCar9.setText("");
+        labelCar10.setText("");
+        labelRepCar10.setText("");
 
     }
 
@@ -222,7 +234,6 @@ public class GestionObjetController {
 
             if (result.isPresent() && result.get() == ButtonType.YES) {
                 serviceProduit.deleteArticle(produitselected);
-                //filterArticle();
 
             }
         }

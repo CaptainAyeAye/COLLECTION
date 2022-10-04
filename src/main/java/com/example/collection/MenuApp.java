@@ -117,7 +117,8 @@ public class MenuApp extends Application {
             dialogStage.setScene(scene);
 
             AjouterModifierProduitController ajouterModifierController = loader.getController();
-            //ajouterModifierController.setArticle(articleSelected);
+            ajouterModifierController.setArticle(articleSelected);
+            ajouterModifierController.setMenuApp(this);
 
 
            ajouterModifierController.setDialogStage(dialogStage);
@@ -226,7 +227,9 @@ public class MenuApp extends Application {
 
             AjouterModifierCaracteristiqueController ajouterModifierController = loader.getController();
             ajouterModifierController.setCaracteristique(caracteristiqueselected);
+            System.out.println(caracteristiqueselected);
             ajouterModifierController.setMenuApp(this);
+            ajouterModifierController.remplir();
 
 
 
